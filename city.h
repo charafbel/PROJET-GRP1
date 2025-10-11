@@ -1,8 +1,9 @@
 #ifndef CITY_H
 #define CITY_H
 
+#include "dictionary.h"
+
 typedef struct city City;
 
-Dico* getCities(City* city);
 
 #endif //CITY_H
