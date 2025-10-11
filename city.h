@@ -6,6 +6,7 @@
 typedef struct city City;
 
 City* createCity(char* name, int xCoor, int yCoor);
+void freeCity(City* city);
 
 int getXCoor(City* city);
 int getYCoor(City* city);

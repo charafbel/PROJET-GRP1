@@ -21,7 +21,9 @@ City* createCity(char* name, int xCoor, int yCoor){
     city->name = name;
 return city;
 }
-
+void freeCity(City* city) {
+    free(city);
+}
 // Getters :
 char* getName(City* city) {
     return city->name;
