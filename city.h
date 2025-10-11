@@ -5,5 +5,9 @@
 
 typedef struct city City;
 
+City* createCity(char* name, int xCoor, int yCoor);
 
+int getXCoor(City* city);
+int getYCoor(City* city);
+char* getName(City* city);
 #endif //CITY_H

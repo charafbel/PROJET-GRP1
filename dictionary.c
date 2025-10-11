@@ -8,5 +8,5 @@ typedef struct couple{
 struct dictionary{
     couple[] dic;
     int size;
-}
+};
 
