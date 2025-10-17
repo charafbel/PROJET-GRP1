@@ -1,11 +1,15 @@
 #ifndef CITY_H
 #define CITY_H
 
-#include "dictionary.h"
 
 typedef struct city City;
+struct city {
+    int x;
+    int y; // coordonnées GPS
+    int id;
+};
 
-City* createCity(char* name, int xCoor, int yCoor);
+City* createCity(int id, int xCoor, int yCoor);
 void freeCity(City* city);
 
 int getXCoor(City* city);

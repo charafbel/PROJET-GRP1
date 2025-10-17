@@ -3,7 +3,17 @@
 
 #include "city.h"
 
-typedef struct Dictionary Dic;
+typedef struct couple{
+    int ID;
+    City* city;
+} Couple;
+
+
+typedef struct dictionary Dic;
+struct dictionary{
+    int size;
+    struct couple dic[];
+};
 
 // Constructeurs :
 Dic* createDictionary();
@@ -11,7 +21,7 @@ void freeDictionary(Dic* dictionary);
 Dic* addToDictionary(Dic* dictionary, City* city);
 
 // Opérateurs :
-Dic* removeFromDictionary(Dic* dictionary);
+Dic* removeFromDictionary(Dic* dictionary, City* city);
 
 // Getters :
 int getDistance(City* city1, City* city2);
