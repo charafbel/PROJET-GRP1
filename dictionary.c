@@ -16,12 +16,24 @@ void freeDictionary(Dic* dictionary) {
 }
 
 Dic* addToDictionary(Dic* dictionary, City* city) {
-    Couple* Couple = malloc(sizeof(Couple));
-    Couple->city = city;
-    Couple->ID = city->id;
-    (dictionary->size)++;
+    // Redimensionner le tableau dic pour accueillir un nouvel élément
+    Couple* temp = realloc(dictionary->dic, (dictionary->size + 1) * sizeof(Couple));
+    if (!temp) {
+        perror("realloc");
+        exit(EXIT_FAILURE);
+    }
+
+    (dictionary->couple) = temp;
+
+    // Remplir la nouvelle case
+    (dictionary->couple).city = city;
+    (dictionary->couple).ID = city->id;
+
+    dictionary->size++;
+
     return dictionary;
 }
+
 
 Dic* removeFromDictionary(Dic* dictionary, City* city) {
     int delIndex;

@@ -7,34 +7,27 @@
 Dic* readTsp(FILE *f) {
     char line[1024];
     int dimension;
-    int id;
-    int x;
-    int y;
     Dic* dic = createDictionary();
 
     while (fgets(line, 1024, f)) {
-        printf("Ligne lue: '%s'\n", line);
-        // AI
-        if (strncmp(line, "DIMENSION", 9) == 0) {
-            // Mieux parser la dimension (chaîne plus souple)
-            char* p = strchr(line, ':');
-            if (p)
-                sscanf(p + 1, "%d", &dimension);
-            printf("Dimension: %d\n", dimension);
+        if (strncmp(line, "DIMENSION : ", 12) == 0) {
+            sscanf(line, "DIMENSION : %d ", &dimension);
         }
-        if (strncmp(line, "NODE_COORD_SECTION", 1) == 0) {
-            printf("BREAK");
+        if (strncmp(line, "NODE_COORD_SECTION", strlen("NODE_COORD_SECTION")) == 0) {
+            fgets(line, 1024, f);
             break; // Pour aller dans la boucle de lecture des coordonnées
         }
     }
     printf("Dimension: %d\n", dimension);
     for (int i = 0; i < dimension; i++) {
+        int id = 0;
+        int x= 0;
+        int y= 0;
         City* city;
         sscanf(line, "%d %d %d", &id, &x, &y);
-        printf("%d %d %d\n", id, x, y);
         city = createCity(id, x, y);
-        printf("VILLE = %d, %d, %d", city->x, city->y, city->id);
         dic = addToDictionary(dic, city);
+        fgets(line, 1024, f);
     }
     fclose(f);
     return dic;
@@ -56,6 +49,6 @@ int main() {
         exit(EXIT_FAILURE);
     }
     Dic* dic = readTsp(f);
-    // printDictionary(dic);
+    printDictionary(dic);
     return 0;
 }
