@@ -23,3 +23,14 @@ void freeMatrix(Matrix *m) {
     free(m->matrix);
     free(m);
 }
+
+Matrix* fillMatrix(Matrix* m, City* from, City* dest, int distance){
+    int i = from->id;
+    int j = dest->id;
+    if (from->id < dest->id){
+        m->matrix[i][j] = distance;
+    } else {
+        m->matrix[j][i] = distance;
+    }
+    return m;
+}
