@@ -1,5 +1,5 @@
-#ifndef DICTIONARY_H
-#define DICTIONARY_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include "city.h"
 
@@ -13,4 +13,4 @@ void freeMatrix(Matrix* m);
 
 
 
-#endif //DICTIONARY_H
+#endif //MATRIX_H
