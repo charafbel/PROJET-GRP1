@@ -10,6 +10,7 @@ Matrix* MatrixCreate(int dimension) {
     if (!mat) {
         perror("malloc mat");
         exit(EXIT_FAILURE);
+    }
     for (int i = 0; i < dimension; i++) {
         // Ligne i contient les colonnes j >= i
         mat[i] = malloc(sizeof(int) * (dimension - i));
