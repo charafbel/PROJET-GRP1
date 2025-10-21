@@ -13,4 +13,6 @@ void freeMatrix(Matrix* m);
 void fillMatrix(Matrix* m, City* from, City* dest, int distance);
 
 
+
+
 #endif //MATRIX_H
