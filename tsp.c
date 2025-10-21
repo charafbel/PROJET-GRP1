@@ -77,8 +77,6 @@ Infos* readTsp(FILE *f){
         infos->cityArray[i] = city;
     }
 
-
-
     fclose(f);
     return infos;
 }
@@ -92,6 +90,7 @@ Matrix* distanceMatrix(Infos infos) {
     }
 
     m->dimension = infos.dimension;
+    printf("Dimension : %d\n", m->dimension);
     m->matrix = MatrixCreate(infos.dimension);
     int (*fctd)(City*, City*) = NULL;
 
@@ -109,12 +108,11 @@ Matrix* distanceMatrix(Infos infos) {
     }
 
     /* Remplissage */
-    printf("%d\n", infos.dimension);
     for (int i = 0; i < infos.dimension; i++) {
         for (int j = i; j < infos.dimension; j++) {
             City* from = infos.cityArray[i];
             City* to = infos.cityArray[j];
-            printf("[DEBUG] Distance (%d,%d) = %d\n", from->id, to->id, fctd(from, to));
+            printf("[DEBUG] Distance (%d,%d) = %d\n", i, j, fctd(from, to));
             fillMatrix(m, from, to, fctd(from, to));
         }
     }

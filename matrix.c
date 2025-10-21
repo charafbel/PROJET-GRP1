@@ -7,20 +7,11 @@
 
 Matrix* MatrixCreate(int dimension) {
     int **mat = malloc(sizeof(int*) * dimension);
-    if (!mat) {
-        perror("malloc mat");
-        exit(EXIT_FAILURE);
-    }
     for (int i = 0; i < dimension; i++) {
-        // Ligne i contient les colonnes j >= i
         mat[i] = malloc(sizeof(int) * (dimension - i));
-        if (!mat[i]) {
-            fprintf(stderr, "[ERREUR] malloc ligne %d échoué\n", i);
-            exit(EXIT_FAILURE);
-        }
         for (int j = 0; j < (dimension - i); j++)
             mat[i][j] = 0;
-        printf("[DEBUG] Ligne %d allouée : %d éléments (colonnes %d → %d)\n", i+1, dimension - i, i, dimension - 1);
+        //printf("[DEBUG] Ligne %d allouée : %d éléments (colonnes %d → %d)\n", i+1, dimension - i, i, dimension - 1);
     }
     Matrix* m = malloc(sizeof(Matrix));
     if (!m) {
@@ -29,7 +20,7 @@ Matrix* MatrixCreate(int dimension) {
     }
     m->matrix = mat;
     m->dimension = dimension;
-    printf("[DEBUG] Matrice créée avec succès");
+    printf("[DEBUG] Matrice créée avec succès : 1", );
     return m;
 }
 
@@ -40,12 +31,8 @@ void freeMatrix(Matrix *m) {
     free(m->matrix);
     free(m);
 }
-void fillMatrix(Matrix* m, City* from, City* dest, int distance) {
-    if (m == NULL || m->matrix == NULL) {
-        fprintf(stderr, "Error fillMatrix()\n");
-        exit(EXIT_FAILURE);
-    }
 
+void fillMatrix(Matrix* m, City* from, City* dest, int distance) {
     int i = from->id;
     int j = dest->id;
     if (i < j)
