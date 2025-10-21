@@ -43,7 +43,7 @@ int distanceAtt(City* cityA, City* cityB) {
 Infos* readTsp(FILE *f){
     char line[1024];
     Infos* infos = malloc(sizeof(Infos));
-    infos->cityArray = malloc(infos->dimension * sizeof(City*));
+
     infos->dimension = 0;
     strcpy(infos->edgeType, "");
 
@@ -64,7 +64,7 @@ Infos* readTsp(FILE *f){
 
     if (infos->dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
         exit(1);
-
+    infos->cityArray = malloc(infos->dimension* sizeof(City*));
     printf("Dimension: %d\n", infos->dimension);
     for (int i = 0; i < infos->dimension; i++) {
         int id = 0;
@@ -77,38 +77,53 @@ Infos* readTsp(FILE *f){
         infos->cityArray[i] = city;
     }
 
+
+
     fclose(f);
     return infos;
 }
+
 Matrix* distanceMatrix(Infos infos) {
-    /* Init */
+    printf("[DEBUG] Création de la matrice de distance...\n");
     Matrix* m = (Matrix*)malloc(sizeof(Matrix));
-    int (*fctd)(City*, City*) = NULL;
+    if (!m) {
+        perror("malloc Matrix");
+        exit(EXIT_FAILURE);
+    }
+
     m->dimension = infos.dimension;
+    m->matrix = MatrixCreate(infos.dimension);
+    int (*fctd)(City*, City*) = NULL;
 
     /* Choix du type de fonction */
     if (strcmp(infos.edgeType, "ATT") == 0)
         fctd = distanceAtt;
-    if (strcmp(infos.edgeType, "EUCL_2D") == 0)
+    else if (strcmp(infos.edgeType, "EUCL_2D") == 0)
         fctd = distanceAtt; // A CHANGER
-    if (strcmp(infos.edgeType, "GEO") == 0)
+    else if (strcmp(infos.edgeType, "GEO") == 0)
         fctd = distanceAtt; // A CHANGER
+
     if (fctd == NULL) {
-        perror("Erreur de lecture");
+        perror("distanceMatrix: edgeType inconnu");
         exit(EXIT_FAILURE);
     }
 
     /* Remplissage */
+    printf("%d\n", infos.dimension);
     for (int i = 0; i < infos.dimension; i++) {
-        for (int j = i+1; j < infos.dimension; j++) {
+        for (int j = i; j < infos.dimension; j++) {
             City* from = infos.cityArray[i];
             City* to = infos.cityArray[j];
+            printf("[DEBUG] Distance (%d,%d) = %d\n", from->id, to->id, fctd(from, to));
             fillMatrix(m, from, to, fctd(from, to));
         }
     }
+
     printMatrix(m);
+    printf("[DEBUG] Matrice remplie avec succès.\n");
     return m;
 }
+
 
 int main() {
     /* LECTURE DU FICHIER */
