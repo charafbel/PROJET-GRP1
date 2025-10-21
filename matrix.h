@@ -10,7 +10,7 @@ typedef struct {
 
 Matrix* MatrixCreate(int dimension);
 void freeMatrix(Matrix* m);
-Matrix* fillMatrix(Matrix* m, City* from, City* dest, int distance);
+void fillMatrix(Matrix* m, City* from, City* dest, int distance);
 
 
 #endif //MATRIX_H

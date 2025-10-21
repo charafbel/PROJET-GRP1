@@ -5,15 +5,24 @@
 #include <string.h>
 #include <math.h>
 
-
-City** readTsp(FILE *f){
-    char line[1024];
+typedef struct {
     int dimension;
+    City** cityArray = malloc(dimension * sizeof(City*));
+    char edgeType[12] = "";
+} Infos ;
+
+Infos* readTsp(FILE *f){
+    char line[1024];
+    Infos* infos = (Infos*)malloc(sizeof(Infos));
+    infos->dimension = 0;
 
     // Boucle de lecture TSP :
     while (fgets(line, 1024, f)) {
         if (strncmp(line, "DIMENSION : ", 12) == 0) {
-            sscanf(line, "DIMENSION : %d ", &dimension); // On capture la valeur de DIMENSION SELON LE MODELE DU FICHIER
+            sscanf(line, "DIMENSION : %d ", &(infos->dimension)); // On capture la valeur de DIMENSION SELON LE MODELE DU FICHIER
+        }
+        if (strncmp(line, "EDGE_WEIGHT_TYPE", 16) == 0){
+            sscanf(line, "EDGE_WEIGHT_TYPE : %s", infos->edgeType);
         }
         // On s'arrete une fois avoir depassé la ligne NODE_COORD_SECTION
         if (strncmp(line, "NODE_COORD_SECTION", strlen("NODE_COORD_SECTION")) == 0) {
@@ -22,12 +31,11 @@ City** readTsp(FILE *f){
         }
     }
 
-    if (dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
+    if (infos->dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
         exit(1);
-    City** cityArray = malloc(dimension * sizeof(City*));
 
-    printf("Dimension: %d\n", dimension);
-    for (int i = 0; i < dimension; i++) {
+    printf("Dimension: %d\n", infos->dimension);
+    for (int i = 0; i < infos->dimension; i++) {
         int id = 0;
         int x= 0;
         int y= 0;
@@ -35,13 +43,12 @@ City** readTsp(FILE *f){
         sscanf(line, "%d %d %d", &id, &x, &y);
         city = createCity(id, x, y);
         fgets(line, 1024, f);
-        cityArray[i] = city;
+        infos->cityArray[i] = city;
     }
 
     fclose(f);
-    return cityArray;
+    return infos;
 }
-
 int distanceAtt(City* cityA, City* cityB) {
     double x = (double)(cityA->x - cityB->x);
     double y = (double)(cityA->y - cityB->y);
@@ -63,28 +70,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    /* RECUPERATION DU TYPE DE DISTANCES */
-    char li[1024];
-    char edgeType[64] = "";
-    while (fgets(li, 1024, f)) {
-        if (strncmp(li, "EDGE_WEIGHT_TYPE", 16) == 0){
-            sscanf(li, "EDGE_WEIGHT_TYPE : %s", edgeType);
-            break;
-        }
-    }
 
-    /* LECTURE TSP */
-    rewind(f); // Afin de revenir au depart pour une autre lecture.
-    City **cities = readTsp(f); // readTsp renvoie un tableau de City*
 
-    /* Affichage des Informations nécessaires */
-    printf("EDGE_WEIGHT_TYPE : %s\n", edgeType);
-    printf("=== Liste des villes lues ===\n");
-    for (int i = 0; i < 15; i++) {
-        printf("Ville %d : ID = %d, x = %d, y = %d\n",i + 1, cities[i]->id, cities[i]->x, cities[i]->y);
-    }
-
-    /* Terminaison */
-    free(cities);
     return 0;
 }

@@ -15,7 +15,6 @@ Matrix* MatrixCreate(int dimension) {
     m->dimension = dimension;
     return m;
 }
-
 void freeMatrix(Matrix *m) {
     for (int i = 0; i < m->dimension; i++) {
         free(m->matrix[i]);
@@ -23,14 +22,9 @@ void freeMatrix(Matrix *m) {
     free(m->matrix);
     free(m);
 }
-
-Matrix* fillMatrix(Matrix* m, City* from, City* dest, int distance){
+void fillMatrix(Matrix* m, City* from, City* dest, int distance){
     int i = from->id;
     int j = dest->id;
-    if (from->id < dest->id){
+    if (i < j)
         m->matrix[i][j] = distance;
-    } else {
-        m->matrix[j][i] = distance;
-    }
-    return m;
 }
