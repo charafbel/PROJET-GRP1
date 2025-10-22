@@ -11,17 +11,27 @@ typedef struct {
     char edgeType[12];
 } Infos ;
 
-void printMatrix(Matrix* m) {
+/* Version Corrigée de printMatrix */
+void printMatrix(Matrix *m) {
     if (m == NULL) {
         printf("Erreur : matrice vide.\n");
         return;
     }
-    printf("Matrice de distances (%d x %d) :\n", m->dimension, m->dimension);
+    printf("Matrice de distances (%d x %d) - Triangle supérieur stocké :\n", m->dimension, m->dimension);
+
     for (int i = 0; i < m->dimension; i++) {
         for (int j = 0; j < m->dimension; j++) {
-            printf("%d ", m->matrix[i][j]);
+
+            // La condition clé est ici :
+            if (j >= i) {
+                // On est sur ou au-dessus de la diagonale : on affiche la valeur
+                printf("%d\t", getDistance(m, i, j));
+            } else {
+                // On est sous la diagonale : on affiche du vide pour l'alignement
+                printf("\t");
+            }
         }
-        printf("\n");
+        printf("\n"); // Ligne suivante
     }
 }
 
@@ -81,48 +91,41 @@ Infos* readTsp(FILE *f){
     return infos;
 }
 
-Matrix* distanceMatrix(Infos infos) {
+/* Version Corrigée de distanceMatrix */
+Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)) { // Passez fctd en paramètre
     printf("[DEBUG] Création de la matrice de distance...\n");
-    Matrix* m = (Matrix*)malloc(sizeof(Matrix));
+
+    // CORRECTION : MatrixCreate alloue et retourne déjà la structure Matrix*
+    Matrix* m = MatrixCreate(infos.dimension);
     if (!m) {
-        perror("malloc Matrix");
+        perror("MatrixCreate a échoué");
         exit(EXIT_FAILURE);
     }
-
-    m->dimension = infos.dimension;
-    printf("Dimension : %d\n", m->dimension);
-    m->matrix = MatrixCreate(infos.dimension);
-    int (*fctd)(City*, City*) = NULL;
-
-    /* Choix du type de fonction */
-    if (strcmp(infos.edgeType, "ATT") == 0)
-        fctd = distanceAtt;
-    else if (strcmp(infos.edgeType, "EUCL_2D") == 0)
-        fctd = distanceAtt; // A CHANGER
-    else if (strcmp(infos.edgeType, "GEO") == 0)
-        fctd = distanceAtt; // A CHANGER
-
-    if (fctd == NULL) {
-        perror("distanceMatrix: edgeType inconnu");
-        exit(EXIT_FAILURE);
-    }
+    // m->dimension est déjà initialisé par MatrixCreate
 
     /* Remplissage */
-    for (int i = 0; i < infos.dimension; i++) {
-        for (int j = i; j < infos.dimension; j++) {
+    for (int i = 0; i < m->dimension; i++) {
+        // On remplit le triangle supérieur (j commence à i)
+        for (int j = i; j < m->dimension; j++) {
             City* from = infos.cityArray[i];
             City* to = infos.cityArray[j];
-            printf("[DEBUG] Distance (%d,%d) = %d\n", i, j, fctd(from, to));
-            fillMatrix(m, from, to, fctd(from, to));
+            int dist = fctd(from, to);
+
+            // BUG CORRIGÉ :
+            // N'utilisez pas fillMatrix qui utilise les city->id.
+            // Utilisez les *indices de boucle* i et j avec setDistance.
+            setDistance(m, i, j, dist);
+            // printf("[DEBUG] Distance (%d,%d) = %d\n", i, j, dist); // Décommenter si besoin
         }
     }
 
-    printMatrix(m);
     printf("[DEBUG] Matrice remplie avec succès.\n");
     return m;
 }
 
 
+
+/* Version Corrigée de main() */
 int main() {
     /* LECTURE DU FICHIER */
     FILE *f = fopen("att15.tsp", "r");
@@ -131,6 +134,30 @@ int main() {
         exit(EXIT_FAILURE);
     }
     Infos* infos = readTsp(f);
-    Matrix* m = distanceMatrix(*infos);
+
+    /* Choix du type de fonction */
+    int (*fctd)(City*, City*) = NULL;
+    if (strcmp(infos->edgeType, "ATT") == 0)
+        fctd = distanceAtt;
+    else if (strcmp(infos->edgeType, "EUCL_2D") == 0)
+        fctd = distanceAtt; // A CHANGER
+    else if (strcmp(infos->edgeType, "GEO") == 0)
+        fctd = distanceAtt; // A CHANGER
+
+    if (fctd == NULL) {
+        perror("distanceMatrix: edgeType inconnu");
+        // N'oubliez pas de libérer ce qui a été alloué
+        free(infos->cityArray); // (supposant que readTsp n'a pas libéré les villes)
+        free(infos);
+        exit(EXIT_FAILURE);
+    }
+
+    // CORRECTION : Passer fctd en paramètre
+    Matrix* m = distanceMatrix(*infos, fctd);
+
+    // CORRECTION : Imprimer la matrice ici
+    printMatrix(m);
+
+
     return 0;
 }
