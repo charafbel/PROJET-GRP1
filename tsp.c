@@ -11,29 +11,7 @@ typedef struct {
     char edgeType[12];
 } Infos ;
 
-/* Version Corrigée de printMatrix */
-void printMatrix(Matrix *m) {
-    if (m == NULL) {
-        printf("Erreur : matrice vide.\n");
-        return;
-    }
-    printf("Matrice de distances (%d x %d) - Triangle supérieur stocké :\n", m->dimension, m->dimension);
 
-    for (int i = 0; i < m->dimension; i++) {
-        for (int j = 0; j < m->dimension; j++) {
-
-            // La condition clé est ici :
-            if (j >= i) {
-                // On est sur ou au-dessus de la diagonale : on affiche la valeur
-                printf("%d\t", getDistance(m, i, j));
-            } else {
-                // On est sous la diagonale : on affiche du vide pour l'alignement
-                printf("\t");
-            }
-        }
-        printf("\n"); // Ligne suivante
-    }
-}
 
 /* FCT DE DISTANCES : */
 int distanceAtt(City* cityA, City* cityB) {
@@ -50,10 +28,29 @@ int distanceAtt(City* cityA, City* cityB) {
 }
 
 /* Lecture et remplissage */
+void printMatrix(Matrix *m) {
+    if (m == NULL) {
+        fprintf(stderr, "Matrix is NULL\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Matrice de distances : \n");
+    for (int i = 0; i < m->dimension; i++) {
+        for (int j = 0; j < m->dimension; j++) {
+            if (j >= i){
+                // On est sur ou au-dessus de la diagonale : on affiche la valeur
+                printf("%d\t", getDistance(m, i, j));
+            } else{
+                // On est sous la diagonale : on affiche du vide pour l'alignement
+                printf("\t");
+            }
+        }
+        printf("\n");
+    }
+}
 Infos* readTsp(FILE *f){
     char line[1024];
     Infos* infos = malloc(sizeof(Infos));
-
     infos->dimension = 0;
     strcpy(infos->edgeType, "");
 
@@ -76,6 +73,8 @@ Infos* readTsp(FILE *f){
         exit(1);
     infos->cityArray = malloc(infos->dimension* sizeof(City*));
     printf("Dimension: %d\n", infos->dimension);
+
+    /* Lecture de toutes les villes selon le schéma TSP */
     for (int i = 0; i < infos->dimension; i++) {
         int id = 0;
         int x= 0;
@@ -87,21 +86,17 @@ Infos* readTsp(FILE *f){
         infos->cityArray[i] = city;
     }
 
+    /* Terminaison */
     fclose(f);
     return infos;
 }
 
-/* Version Corrigée de distanceMatrix */
 Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)) { // Passez fctd en paramètre
-    printf("[DEBUG] Création de la matrice de distance...\n");
-
-    // CORRECTION : MatrixCreate alloue et retourne déjà la structure Matrix*
     Matrix* m = MatrixCreate(infos.dimension);
     if (!m) {
-        perror("MatrixCreate a échoué");
+        fprintf(stderr, "MatrixCreate failed\n");
         exit(EXIT_FAILURE);
     }
-    // m->dimension est déjà initialisé par MatrixCreate
 
     /* Remplissage */
     for (int i = 0; i < m->dimension; i++) {
@@ -110,22 +105,16 @@ Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)) { // Passez fctd 
             City* from = infos.cityArray[i];
             City* to = infos.cityArray[j];
             int dist = fctd(from, to);
-
-            // BUG CORRIGÉ :
-            // N'utilisez pas fillMatrix qui utilise les city->id.
-            // Utilisez les *indices de boucle* i et j avec setDistance.
             setDistance(m, i, j, dist);
-            // printf("[DEBUG] Distance (%d,%d) = %d\n", i, j, dist); // Décommenter si besoin
         }
     }
-
-    printf("[DEBUG] Matrice remplie avec succès.\n");
     return m;
 }
 
 
 
-/* Version Corrigée de main() */
+/* MAIN */
+
 int main() {
     /* LECTURE DU FICHIER */
     FILE *f = fopen("att15.tsp", "r");
@@ -133,6 +122,7 @@ int main() {
         fprintf(stderr, "Erreur : impossible d’ouvrir le fichier.\n");
         exit(EXIT_FAILURE);
     }
+
     Infos* infos = readTsp(f);
 
     /* Choix du type de fonction */
@@ -143,21 +133,16 @@ int main() {
         fctd = distanceAtt; // A CHANGER
     else if (strcmp(infos->edgeType, "GEO") == 0)
         fctd = distanceAtt; // A CHANGER
-
+    // Gestion du cas d'erreur.
     if (fctd == NULL) {
-        perror("distanceMatrix: edgeType inconnu");
-        // N'oubliez pas de libérer ce qui a été alloué
-        free(infos->cityArray); // (supposant que readTsp n'a pas libéré les villes)
+        fprintf(stderr, "Edgetype unknown\n");
+        // Liberation Memoire
+        free(infos->cityArray);
         free(infos);
         exit(EXIT_FAILURE);
     }
 
-    // CORRECTION : Passer fctd en paramètre
     Matrix* m = distanceMatrix(*infos, fctd);
-
-    // CORRECTION : Imprimer la matrice ici
     printMatrix(m);
-
-
     return 0;
 }

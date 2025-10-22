@@ -10,8 +10,8 @@ typedef struct {
 
 Matrix* MatrixCreate(int dimension);
 void freeMatrix(Matrix* m);
-void fillMatrix(Matrix* m, City* from, City* dest, int distance);
-
+void setDistance(Matrix* m, int i, int j, int distance);
+int getDistance(Matrix* m, int i, int j);
 
 
 
