@@ -66,5 +66,5 @@ int getDistance(Matrix* m, int i, int j) {
         fprintf(stderr, "Index out Of bounds (getDistance)");
         exit(EXIT_FAILURE);
     }
-    return m->matrix[i][j-i]
+    return m->matrix[i][j-i];
 }
