@@ -5,6 +5,9 @@
 #include "tad/matrix.h"
 #include "tad/tsp.h"
 
+void brutForce(Matrix* m) {
+
+}
 
 int main(int argc, char *argv[]){
     if (argc != 2) {
@@ -39,6 +42,8 @@ int main(int argc, char *argv[]){
 
     Matrix* m = distanceMatrix(*infos, fctd);
     printMatrix(m);
+
+    brutforce(m);
 
     freeMatrix(m);
     return 0;
