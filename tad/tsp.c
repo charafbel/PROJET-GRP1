@@ -5,6 +5,8 @@
 #include <string.h>
 #include <math.h>
 
+#define RRR 6378.388  // Rayon approximatif de la Terre en km
+
 typedef struct {
     int dimension;
     City** cityArray;
@@ -14,6 +16,33 @@ typedef struct {
 
 
 /* FCT DE DISTANCES : */
+double deg2rad(double deg) {
+    return deg * M_PI/180.0;
+}
+// Conversion spéciale TSP (degrés, minutes) vers radians
+double latitude(City* city) {
+    double deg = (int)(city->x);
+    double min = city->x - deg;
+    double lat = M_PI * (deg + 5.0 * min / 3.0) / 180.0;
+    return lat;
+}
+double longitude(City* city) {
+    double deg = (int)(city->y);
+    double min = city->y - deg;
+    double lon = M_PI * (deg + 5.0 * min / 3.0) / 180.0;
+    return lon;
+}
+int distanceGeo(City* cityA, City* cityB) {
+    double latA = latitude(cityA);
+    double lonA = longitude(cityA);
+    double latB = latitude(cityB);
+    double lonB = longitude(cityB);
+    double q1 = cos(lonA - lonB);
+    double q2 = cos(latA - latB);
+    double q3 = cos(latA + latB);
+    double dist = RRR * acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0;
+    return (int)(dist);
+}
 int distanceAtt(City* cityA, City* cityB) {
     double x = (double)(cityA->x - cityB->x);
     double y = (double)(cityA->y - cityB->y);
@@ -25,6 +54,17 @@ int distanceAtt(City* cityA, City* cityB) {
         dist = tij;
     }
     return dist;
+}
+int distanceEucl(City* cityA, City* cityB){
+    double x_a = cityA->x;
+    double y_a = cityA->y;
+    double x_b = cityB->x;
+    double y_b = cityB->y;
+    double x_offset = x_b - x_a;
+    double y_offset = y_b - y_a;
+    double dist = sqrt(x_offset * x_offset + y_offset * y_offset);
+
+    return (int)(dist + 0.5);
 }
 
 /* Lecture et remplissage */
@@ -90,8 +130,7 @@ Infos* readTsp(FILE *f){
     fclose(f);
     return infos;
 }
-
-Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)) { // Passez fctd en paramètre
+Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)){
     Matrix* m = MatrixCreate(infos.dimension);
     if (!m) {
         fprintf(stderr, "MatrixCreate failed\n");
@@ -109,40 +148,4 @@ Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)) { // Passez fctd 
         }
     }
     return m;
-}
-
-
-
-/* MAIN */
-
-int main() {
-    /* LECTURE DU FICHIER */
-    FILE *f = fopen("att15.tsp", "r");
-    if (f == NULL) {
-        fprintf(stderr, "Erreur : impossible d’ouvrir le fichier.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    Infos* infos = readTsp(f);
-
-    /* Choix du type de fonction */
-    int (*fctd)(City*, City*) = NULL;
-    if (strcmp(infos->edgeType, "ATT") == 0)
-        fctd = distanceAtt;
-    else if (strcmp(infos->edgeType, "EUCL_2D") == 0)
-        fctd = distanceAtt; // A CHANGER
-    else if (strcmp(infos->edgeType, "GEO") == 0)
-        fctd = distanceAtt; // A CHANGER
-    // Gestion du cas d'erreur.
-    if (fctd == NULL) {
-        fprintf(stderr, "Edgetype unknown\n");
-        // Liberation Memoire
-        free(infos->cityArray);
-        free(infos);
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix* m = distanceMatrix(*infos, fctd);
-    printMatrix(m);
-    return 0;
 }
