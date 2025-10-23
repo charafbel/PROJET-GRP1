@@ -1,12 +1,107 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <limits.h>
+#include <signal.h>
+#include <string.h>
 
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
 
-void brutForce(Matrix* m) {
 
+void swatArrVal(int *a, int *b) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+bool nextPermutation(int *arr, int n) {
+    int i = n-2;
+    while (i >= 0 && arr[i] >= arr[i+1]){
+        i--;
+    }
+
+    if (i < 0) return false;  // derniere permutation (problème memoire)
+    int j = n-1;
+
+    while (arr[j] <= arr[i]) {
+        j--;
+    }
+    swatArrVal(&arr[i], &arr[j]); // Echange des deux valeurs
+
+    //Inversion de la fin de tableau.
+    int k = i+1;
+    int l = n-1;
+    while (k < j){
+        swatArrVal(&arr[k], &arr[l]);
+        k++;
+        l--;
+    }
+
+    return true;
+}
+
+int totalPathDistance(Matrix *m, int *chemin, int n) {
+    int sum = 0;
+    for (int i = 0; i < n - 1; i++){
+        sum += getDistance(m, chemin[i], chemin[i + 1]);
+    }
+    sum += getDistance(m, chemin[n - 1], chemin[0]);
+    return sum;
+}
+
+void brutForce(Matrix *m) {
+    int dim = m->dimension;
+    // Creation des tableaux.
+    int *perm = malloc(dim * sizeof(int));
+    int *best = malloc(dim * sizeof(int));
+    int *worst = malloc(dim * sizeof(int));
+    if (!perm || !best || !worst) {
+        fprintf(stderr, "Error malloc (brutforce)\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < dim; i++){
+        perm[i] = i;
+    }
+
+    int bestDist = INT_MAX;
+    int worstDist = 0;
+
+    //signal(SIGINT, handle_sigint); // Intercepter Ctrl+C
+
+    printf("Calcul de toutes les permutations...\n");
+    do {
+        int d = totalPathDistance(m, perm, dim);
+
+        if (d < bestDist) {
+            bestDist = d;
+            memcpy(best, perm, dim * sizeof(int));
+        }
+        if (d > worstDist) {
+            worstDist = d;
+            memcpy(worst, perm, dim * sizeof(int));
+        }
+
+    } while (nextPermutation(perm, dim));
+
+    printf("\n=== Résultats finaux ===\n");
+    printf("Meilleure distance : %d\nChemin : ", bestDist);
+    for (int i = 0; i < dim; i++) {
+        printf("%d ", best[i]);
+    }
+    printf("%d\n", best[0]);
+
+    printf("\nPire distance : %d\nChemin : ", worstDist);
+    for (int i = 0; i < dim; i++) {
+        printf("%d ", worst[i]);
+    }
+    printf("%d\n", worst[0]);
+
+    free(perm);
+    free(best);
+    free(worst);
 }
 
 int main(int argc, char *argv[]){
@@ -43,7 +138,7 @@ int main(int argc, char *argv[]){
     Matrix* m = distanceMatrix(*infos, fctd);
     printMatrix(m);
 
-    brutforce(m);
+    brutForce(m);
 
     freeMatrix(m);
     return 0;
