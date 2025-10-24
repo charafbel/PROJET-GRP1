@@ -31,31 +31,29 @@ void swapArrVal(int *a, int *b) {
     *b = tmp;
 }
 
-bool nextPermutation(int *arr, int n) {
+bool nextPermutation(int *arr, int n){
     int i = n-2;
-    while (i >= 0 && arr[i] >= arr[i+1]){
+    while (i >= 0 && arr[i] >= arr[i + 1])
         i--;
-    }
-
-    if (i < 0) return false;  // derniere permutation (problème memoire)
+    if (i < 0)
+        return false;
+    // Étape 2 : trouver le plus petit élément à droite de i qui soit > arr[i]
     int j = n-1;
-
-    while (arr[j] <= arr[i]) {
+    while (arr[j] <= arr[i])
         j--;
-    }
-    swapArrVal(&arr[i], &arr[j]); // Echange des deux valeurs
-
-    //Inversion de la fin de tableau.
-    int k = i+1;
-    int l = n-1;
-    while (k < j){
+    // Étape 3 : échanger les deux
+    swapArrVal(&arr[i], &arr[j]);
+    // Étape 4 : inverser la fin du tableau (partie après i)
+    int k = i + 1;
+    int l = n - 1;
+    while (k < l){
         swapArrVal(&arr[k], &arr[l]);
         k++;
         l--;
     }
-
     return true;
 }
+
 int totalPathDistance(Matrix *m, int *chemin, int n) {
     int sum = 0;
     for (int i = 0; i < n - 1; i++){
@@ -64,6 +62,7 @@ int totalPathDistance(Matrix *m, int *chemin, int n) {
     sum += getDistance(m, chemin[n - 1], chemin[0]);
     return sum;
 }
+
 Results* brutForce(Matrix *m) {
     int dim = m->dimension;
 
@@ -216,18 +215,19 @@ int main(int argc, char *argv[]){
             }
         }
         fprintf(out, "]");
+        close(out);
     } else {
 */
-        printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-        printf("%s ; %s ; %f ; %d ; [", fn, method, 0.00, results->bestDistance);
-        for (int i = 0; i < results->dimension; i++) {
-            printf("%d", results->bestPath[i] + 1);
-            if (i != results->dimension-1) {
-                printf(",");
-            }
-        }
-        printf("]\n");
     }
+    printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
+    printf("%s ; %s ; %f ; %d ; [", fn, method, 0.00, results->bestDistance);
+    for (int i = 0; i < results->dimension; i++) {
+        printf("%d", results->bestPath[i] + 1);
+        if (i != results->dimension-1) {
+            printf(",");
+        }
+    }
+    printf("]\n");
 
     /* Liberation Memoire */
 

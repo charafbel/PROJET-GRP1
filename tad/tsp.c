@@ -44,16 +44,15 @@ int distanceGeo(City* cityA, City* cityB) {
     return (int)(dist);
 }
 int distanceAtt(City* cityA, City* cityB) {
-    double x = (double)(cityA->x - cityB->x);
-    double y = (double)(cityA->y - cityB->y);
-    double dist = sqrt( ((x*x)+(y*y))/10 );
-    int tij = (int)(dist+0.5);
-    if (tij < dist) {
-        dist = tij + 1;
-    } else {
-        dist = tij;
-    }
-    return dist;
+    double xd = (double)(cityA->x - cityB->x);
+    double yd = (double)(cityA->y - cityB->y);
+
+    double rij = sqrt((xd * xd + yd * yd) / 10.0);
+    int tij = (int)(rij + 0.5);
+    if (tij < rij)
+        tij++;
+
+    return tij;
 }
 int distanceEucl(City* cityA, City* cityB){
     double x_a = cityA->x;
@@ -130,20 +129,17 @@ Infos* readTsp(FILE *f){
     fclose(f);
     return infos;
 }
-Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)){
-    Matrix* m = MatrixCreate(infos.dimension);
+Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*)){
+    Matrix* m = MatrixCreate(infos->dimension);
     if (!m) {
         fprintf(stderr, "MatrixCreate failed\n");
         exit(EXIT_FAILURE);
     }
 
     /* Remplissage */
-    for (int i = 0; i < m->dimension; i++) {
-        // On remplit le triangle supérieur (j commence à i)
-        for (int j = i; j < m->dimension; j++) {
-            City* from = infos.cityArray[i];
-            City* to = infos.cityArray[j];
-            int dist = fctd(from, to);
+    for (int i = 0; i < infos->dimension; i++) {
+        for (int j = i + 1; j < infos->dimension; j++) {
+            int dist = fctd(infos->cityArray[i], infos->cityArray[j]);
             setDistance(m, i, j, dist);
         }
     }
