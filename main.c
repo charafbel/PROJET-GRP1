@@ -9,6 +9,16 @@
 #include "tad/matrix.h"
 #include "tad/tsp.h"
 
+// VARIABLES GLOBALES :
+
+char* instance_name;
+char* methode;
+double temps_cpu;
+double longueur;
+
+
+
+
 
 void swatArrVal(int *a, int *b) {
     int tmp = *a;
@@ -53,11 +63,11 @@ int totalPathDistance(Matrix *m, int *chemin, int n) {
 
 void brutForce(Matrix *m) {
     int dim = m->dimension;
+
     // Creation des tableaux.
     int *perm = malloc(dim * sizeof(int));
     int *best = malloc(dim * sizeof(int));
-    int *worst = malloc(dim * sizeof(int));
-    if (!perm || !best || !worst) {
+    if (!perm || !best) {
         fprintf(stderr, "Error malloc (brutforce)\n");
         exit(EXIT_FAILURE);
     }
@@ -67,11 +77,9 @@ void brutForce(Matrix *m) {
     }
 
     int bestDist = INT_MAX;
-    int worstDist = 0;
-
     //signal(SIGINT, handle_sigint); // Intercepter Ctrl+C
 
-    printf("Calcul de toutes les permutations...\n");
+
     do {
         int d = totalPathDistance(m, perm, dim);
 
@@ -79,29 +87,20 @@ void brutForce(Matrix *m) {
             bestDist = d;
             memcpy(best, perm, dim * sizeof(int));
         }
-        if (d > worstDist) {
-            worstDist = d;
-            memcpy(worst, perm, dim * sizeof(int));
-        }
-
     } while (nextPermutation(perm, dim));
 
-    printf("\n=== Résultats finaux ===\n");
-    printf("Meilleure distance : %d\nChemin : ", bestDist);
-    for (int i = 0; i < dim; i++) {
-        printf("%d ", best[i]);
-    }
-    printf("%d\n", best[0]);
 
-    printf("\nPire distance : %d\nChemin : ", worstDist);
+    printf("%s ; %s ; %f ; %d ; [", instance_name, methode, 0.00, bestDist);
     for (int i = 0; i < dim; i++) {
-        printf("%d ", worst[i]);
+        printf("%d", best[i]);
+        if (i != dim-1) {
+            printf(",");
+        }
     }
-    printf("%d\n", worst[0]);
+    printf("]\n");
 
     free(perm);
-    free(best);
-    free(worst);
+    free(best); 
 }
 
 int main(int argc, char *argv[]){
@@ -135,9 +134,12 @@ int main(int argc, char *argv[]){
         exit(EXIT_FAILURE);
     }
 
-    Matrix* m = distanceMatrix(*infos, fctd);
-    printMatrix(m);
+    methode = infos->edgeType;
+    instance_name = argv[1];
+    // temps_cpu
 
+
+    Matrix* m = distanceMatrix(*infos, fctd);
     brutForce(m);
 
     freeMatrix(m);
