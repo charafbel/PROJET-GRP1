@@ -112,7 +112,7 @@ Infos* readTsp(FILE *f){
     if (infos->dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
         exit(1);
     infos->cityArray = malloc(infos->dimension* sizeof(City*));
-    printf("Dimension: %d\n", infos->dimension);
+    //printf("Dimension: %d\n", infos->dimension);
 
     /* Lecture de toutes les villes selon le schéma TSP */
     for (int i = 0; i < infos->dimension; i++) {
@@ -149,3 +149,4 @@ Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*)){
     }
     return m;
 }
+
