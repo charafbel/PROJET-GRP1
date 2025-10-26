@@ -12,7 +12,6 @@
 #include "tad/tsp.h"
 
 // VARIABLES GLOBALES :
-char* instance_name;
 char* methode;
 double temps_cpu;
 double longueur;
@@ -146,25 +145,28 @@ int main(int argc, char *argv[]){
     int opt;
     int help_flag = 0;
     int save_flag = 0;
+    int cano_flag = 0;
     char *file_name = NULL;
+    char *tsp_file = NULL;
     char *method = NULL;
 
     static struct option long_options[] = {
         {"help", no_argument, 0, 'h'},
-        {"f", optional_argument, 0, 'f'},
-        {"o", optional_argument, 0, 'o'},
-        {"m", required_argument, 0, 'm'},
+        {"file", required_argument, 0, 'f'},
+        {"output", required_argument, 0, 'o'},
+        {"method", required_argument, 0, 'm'},
+        {"print", no_argument, 0, 'c'},
         {0, 0, 0, 0}
     };
 
-    while ((opt = getopt_long(argc, argv, "hf::o::m:", long_options, NULL)) != -1) {
+
+    while ((opt = getopt_long(argc, argv, "hf:o:m:c", long_options, NULL)) != -1) {
         switch (opt) {
             case 'h':
                 help_flag = 1;
                 break;
             case 'f':
-                save_flag = 1;
-                file_name = "results.txt";
+                tsp_file = optarg;
                 break;
             case 'm':
                 if (strcmp(optarg, "bf") == 0) {
@@ -174,29 +176,38 @@ int main(int argc, char *argv[]){
                     exit(EXIT_FAILURE);
                 }
                 break;
+            case 'o':
+                save_flag = 1;
+                file_name = optarg;
+                break;
+            case 'c':
+                cano_flag = 1;
+                break;
             default:
                 fprintf(stderr, "Incorrect usage. Type -h for help.\n");
                 exit(EXIT_FAILURE);
         }
     }
-
+    if (!method) {
+        fprintf(stderr, "Error: missing -m <method> (e.g., bf)\n");
+        exit(EXIT_FAILURE);
+    }
     if (help_flag) {
         printf("Usage: %s <tadfile> [options]\n", argv[0]);
         printf("Options:\n");
         printf("  -h, --help           Print this help message\n");
-        printf("  -f [file], --f [file]    Save output to a file (append mode). Default file: default.txt\n");
-        printf("  -m method, --m method    Calculation method (e.g., bf for brute force)\n");
+        printf("  -f [file]             TSP FILE TO READ\n");
+        printf("  -c                       Print result");
+        printf("  -o [output]              Save output to a file (append mode). Default file: default.txt\n");
+        printf("  -m method, --m method    Calculation method (bf for brute force)\n");
         return 0;
     }
 
-    if (optind >= argc) {
+    if (tsp_file == NULL) {
         fprintf(stderr, "Error: missing required <tadfile> argument\n");
         exit(EXIT_FAILURE);
     }
-    char *tsp_file = argv[optind];
-
     /* ------- EXECUTION DU CODE --------- */
-
     FILE *tsp = fopen(tsp_file, "r");
     if (tsp == NULL) {
         fprintf(stderr, "(Open TSP) Cant open the file.\n");
@@ -221,7 +232,6 @@ int main(int argc, char *argv[]){
     }
 
     methode = infos->edgeType;
-    instance_name = argv[1];
 
     Matrix* m = distanceMatrix(infos, fctd);
     Results* results;
@@ -232,10 +242,12 @@ int main(int argc, char *argv[]){
     }
 
     /* Vu que les fichiers tsp sont dans un fichier, pour l'affichage il faut eviter l'affichage du ./tsp/ */
+
     char *fn = strrchr(tsp_file, '/');
     fn++;
     end = clock();
     cpu_time_used = ((double) (end - start))/CLOCKS_PER_SEC;
+
     /* Ecriture si save_flag actif */
     if (save_flag) {
         FILE *out = fopen(file_name, "a");
@@ -250,22 +262,25 @@ int main(int argc, char *argv[]){
                 fprintf(out, ",");
             }
         }
-        fprintf(out, "]");
+        fprintf(out, "]\n");
         fclose(out);
     }
-    /* Affichage console */
-    printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-    printf("%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
-    for (int i = 0; i < results->dimension; i++) {
-        printf("%d", results->bestPath[i] + 1);
-        if (i != results->dimension-1) {
-            printf(",");
+    if (cano_flag) {
+        printf("%d",canonicalTourLength(m));
+    } else {
+        /* Affichage console */
+        printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
+        printf("%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
+        for (int i = 0; i < results->dimension; i++) {
+            printf("%d", results->bestPath[i] + 1);
+            if (i != results->dimension-1) {
+                printf(",");
+            }
         }
+        printf("]\n");
     }
-    printf("]\n");
 
     /* Liberation Memoire */
-
     freeMatrix(m);
     free(infos->cityArray);
     free(infos);

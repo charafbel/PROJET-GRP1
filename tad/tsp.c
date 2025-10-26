@@ -40,6 +40,7 @@ int distanceGeo(City* cityA, City* cityB) {
     return (int)(dist);
 }
 
+
 /* Distances Mathematiques */
 int distanceAtt(City* cityA, City* cityB) {
     double xd = (double)(cityA->x - cityB->x);
@@ -85,6 +86,15 @@ void printMatrix(Matrix *m) {
         }
         printf("\n");
     }
+}
+int canonicalTourLength(Matrix* m) {
+    int total = 0;
+    int n = m->dimension;
+    for (int i = 0; i < n - 1; i++) {
+        total += getDistance(m, i, i + 1);
+    }
+    total += getDistance(m, n - 1, 0); // retour au point de départ
+    return total;
 }
 /* Lecture du fichier tsp */
 Infos* readTsp(FILE *f){

@@ -21,6 +21,7 @@ void printMatrix(Matrix *m);
 int distanceAtt(City* cityA, City* cityB);
 int distanceEucl(City* cityA, City* cityB);
 int distanceGeo(City* cityA, City* cityB);
+int canonicalTourLength(Matrix* m);
 
 /* Fonctions utilitaires pour le mode GEO */
 double latitude(City* city);

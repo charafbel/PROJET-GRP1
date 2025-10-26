@@ -74,7 +74,7 @@ def tests_instances_list(instances_file,methods):
 filename = "att10.tsp" #
 path = "../" # adaptez à votre cas
 code = "main" # nom du programme C
-methods = ["bf"]#"bf","gadpx"
+methods = ["bf"]
 
 #test_instance(filename,methods) # pour un seul appel
 tests_instances_list("instances.txt",methods) # marche si le C marche
