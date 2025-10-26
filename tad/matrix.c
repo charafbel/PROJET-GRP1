@@ -8,7 +8,7 @@
 Matrix* MatrixCreate(int dimension) {
     int **mat = malloc(sizeof(int*) * dimension);
     if (!mat) {
-        fprintf(stderr, "Matrix allocation failed\n");
+        fprintf(stderr, " 1 Matrix allocation failed\n");
         exit(EXIT_FAILURE);
     }
 
@@ -22,7 +22,7 @@ Matrix* MatrixCreate(int dimension) {
 
     Matrix* m = malloc(sizeof(Matrix));
     if (!m) {
-        fprintf(stderr, "Matrix allocation failed\n");
+        fprintf(stderr, " 2 Matrix allocation failed\n");
         exit(EXIT_FAILURE);
     }
 
@@ -40,6 +40,8 @@ void freeMatrix(Matrix *m) {
 }
 
 void setDistance(Matrix* m, int i, int j, int distance) {
+    if (i == j) return; // Ne rien faire pour la diagonale
+
     // Gestion de la symetrie
     if (i > j){
         int temp = i;
@@ -51,10 +53,12 @@ void setDistance(Matrix* m, int i, int j, int distance) {
         fprintf(stderr, "Index out Of bounds (setDistance)");
         exit(EXIT_FAILURE);
     }
-    m->matrix[i][j-i] = distance;
+    m->matrix[i][j - i - 1] = distance; // <-- CORRECTION ICI
 }
 
 int getDistance(Matrix* m, int i, int j) {
+    if (i == j) return 0; // La distance à soi-même est 0
+
     // Gestion de la symetrie
     if (i > j){
         int temp = i;
@@ -66,5 +70,5 @@ int getDistance(Matrix* m, int i, int j) {
         fprintf(stderr, "Index out Of bounds (getDistance)");
         exit(EXIT_FAILURE);
     }
-    return m->matrix[i][j-i];
+    return m->matrix[i][j - i - 1]; // <-- CORRECTION ICI
 }

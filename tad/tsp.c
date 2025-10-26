@@ -1,11 +1,16 @@
-#include "city.h"
-#include "matrix.h"
+#define _USE_MATH_DEFINES  // EN PREMIER !
+#include <math.h>          // Juste après
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
+#include "city.h"          // Tes .h viennent APRES
+#include "matrix.h"
 #define RRR 6378.388  // Rayon approximatif de la Terre en km
+#define M_PI 3.1415926535  // Valeur de Pi
+
+
+// ... LA SUITE DE TON CODE (typedef struct Infos...) ...
 
 typedef struct {
     int dimension;

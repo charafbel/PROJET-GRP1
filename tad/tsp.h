@@ -17,7 +17,7 @@ typedef struct {
 
 /* Fonctions de lecture et de traitement */
 Infos* readTsp(FILE *f);
-Matrix* distanceMatrix(Infos infos, int (*fctd)(City*, City*));
+Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*));
 void printMatrix(Matrix *m);
 
 /* Fonctions de distance */

@@ -17,10 +17,11 @@ OBJ = $(SRC:.c=.o)
 # Compilateur et options
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
+LDFLAGS = -lm
 
 # Règle principale
 $(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
 
 # Compilation des .c en .o
 %.o: %.c

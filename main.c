@@ -17,6 +17,8 @@ char* instance_name;
 char* methode;
 double temps_cpu;
 double longueur;
+int ij;
+
 
 typedef struct {
     int dimension;
@@ -24,6 +26,29 @@ typedef struct {
     int *bestPath;
 }Results;
 
+
+void  INThandler(int sig)
+{
+     char  c;
+
+     signal(sig, SIG_IGN);
+     // actions...
+     printf("arrêt avec i = %d\n",ij);
+     printf("OUCH, did you hit Ctrl-C?\n"
+            "Do you really want to quit? [y/n] ");
+     c = getchar();
+     if (c == 'y' || c == 'Y'){
+       // actions
+       printf("sortie avec i = %d\n",ij);
+       exit(0);
+     }
+     else{
+          printf("Je reprends avec i = %d\n",ij);
+          signal(SIGINT, INThandler);
+        }
+
+     getchar(); // Get new line character
+}
 
 void swapArrVal(int *a, int *b) {
     int tmp = *a;
@@ -87,6 +112,7 @@ Results* brutForce(Matrix *m) {
 
         if (d < bestDist) {
             bestDist = d;
+            ij = bestDist;
             memcpy(best, perm, dim * sizeof(int));
         }
     } while (nextPermutation(perm, dim));
@@ -103,6 +129,8 @@ Results* brutForce(Matrix *m) {
 }
 
 int main(int argc, char *argv[]){
+    signal(SIGINT, INThandler); // Enregistrer le handler
+
     if (argc < 2){
         fprintf(stderr, "Usage: %s <tadfile> [options]\n", argv[0]);
         exit(EXIT_FAILURE);
@@ -173,6 +201,8 @@ int main(int argc, char *argv[]){
     }
 
     Infos* infos = readTsp(tsp);
+    printf("fait\n");
+    printf("DEBUG: Dimension lue par readTsp = %d\n", infos->dimension);
 
     /* Choix du type de fonction */
     int (*fctd)(City*, City*) = NULL;
@@ -188,7 +218,8 @@ int main(int argc, char *argv[]){
     methode = infos->edgeType;
     instance_name = argv[1];
 
-    Matrix* m = distanceMatrix(*infos, fctd);
+    Matrix* m = distanceMatrix(infos, fctd);
+    printMatrix(m);
     Results* results;
     if (method && strcmp(method, "bf") == 0) {
         results = brutForce(m);
