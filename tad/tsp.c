@@ -7,7 +7,7 @@
 #include "city.h"
 #include "matrix.h"
 #define RRR 6378.388  // Rayon approximatif de la Terre en km
-// #define M_PI 3.1415926535  // Warning de redefinition, probable bug
+#define M_PI 3.1415926535  // Warning de redefinition, probable bug (MACOS)
 
 typedef struct{
     int dimension;
