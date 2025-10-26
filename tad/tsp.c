@@ -1,46 +1,37 @@
-#define _USE_MATH_DEFINES  // EN PREMIER !
-#include <math.h>          // Juste après
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "city.h"          // Tes .h viennent APRES
+#include "city.h"
 #include "matrix.h"
 #define RRR 6378.388  // Rayon approximatif de la Terre en km
-#define M_PI 3.1415926535  // Valeur de Pi
+// #define M_PI 3.1415926535  // Warning de redefinition, probable bug
 
-
-// ... LA SUITE DE TON CODE (typedef struct Infos...) ...
-
-typedef struct {
+typedef struct{
     int dimension;
     City** cityArray;
     char edgeType[12];
 } Infos ;
 
-
-
 /* FCT DE DISTANCES : */
-double deg2rad(double deg) {
-    return deg * M_PI/180.0;
-}
-// Conversion spéciale TSP (degrés, minutes) vers radians
-double latitude(City* city) {
-    double deg = (int)(city->x);
+
+/* Fonctions Géographiques */
+double latitude(City* city){
+    double deg = city->x;
     double min = city->x - deg;
-    double lat = M_PI * (deg + 5.0 * min / 3.0) / 180.0;
-    return lat;
+    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
 }
 double longitude(City* city) {
-    double deg = (int)(city->y);
+    double deg = city->y;
     double min = city->y - deg;
-    double lon = M_PI * (deg + 5.0 * min / 3.0) / 180.0;
-    return lon;
+    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
 }
 int distanceGeo(City* cityA, City* cityB) {
     double latA = latitude(cityA);
-    double lonA = longitude(cityA);
     double latB = latitude(cityB);
+    double lonA = longitude(cityA);
     double lonB = longitude(cityB);
     double q1 = cos(lonA - lonB);
     double q2 = cos(latA - latB);
@@ -48,6 +39,8 @@ int distanceGeo(City* cityA, City* cityB) {
     double dist = RRR * acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0;
     return (int)(dist);
 }
+
+/* Distances Mathematiques */
 int distanceAtt(City* cityA, City* cityB) {
     double xd = (double)(cityA->x - cityB->x);
     double yd = (double)(cityA->y - cityB->y);
@@ -73,6 +66,7 @@ int distanceEucl(City* cityA, City* cityB){
 
 /* Lecture et remplissage */
 void printMatrix(Matrix *m) {
+    /* Fonction ne servant pas directement au projet mais permettant un debugage plus efficace */
     if (m == NULL) {
         fprintf(stderr, "Matrix is NULL\n");
         exit(EXIT_FAILURE);
@@ -92,6 +86,7 @@ void printMatrix(Matrix *m) {
         printf("\n");
     }
 }
+/* Lecture du fichier tsp */
 Infos* readTsp(FILE *f){
     char line[1024];
     Infos* infos = malloc(sizeof(Infos));
@@ -104,7 +99,7 @@ Infos* readTsp(FILE *f){
             sscanf(line, "DIMENSION : %d ", &(infos->dimension)); // On capture la valeur de DIMENSION SELON LE MODELE DU FICHIER
         }
         if (strncmp(line, "EDGE_WEIGHT_TYPE", 16) == 0){
-            sscanf(line, "EDGE_WEIGHT_TYPE : %s", infos->edgeType);
+            sscanf(line, "EDGE_WEIGHT_TYPE : %s", infos->edgeType); // De Même pour le type de distances
         }
         // On s'arrete une fois avoir depassé la ligne NODE_COORD_SECTION
         if (strncmp(line, "NODE_COORD_SECTION", strlen("NODE_COORD_SECTION")) == 0) {
@@ -116,7 +111,6 @@ Infos* readTsp(FILE *f){
     if (infos->dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
         exit(1);
     infos->cityArray = malloc(infos->dimension* sizeof(City*));
-    //printf("Dimension: %d\n", infos->dimension);
 
     /* Lecture de toutes les villes selon le schéma TSP */
     for (int i = 0; i < infos->dimension; i++) {
@@ -134,13 +128,13 @@ Infos* readTsp(FILE *f){
     fclose(f);
     return infos;
 }
-Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*)){
+/* Generation de la matrice des distances */
+Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*)){ // POINTEUR DE FCT PARAMETRé DANS LE MAIN.
     Matrix* m = MatrixCreate(infos->dimension);
     if (!m) {
         fprintf(stderr, "MatrixCreate failed\n");
         exit(EXIT_FAILURE);
     }
-
     /* Remplissage */
     for (int i = 0; i < infos->dimension; i++) {
         for (int j = i + 1; j < infos->dimension; j++) {
@@ -150,4 +144,3 @@ Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*)){
     }
     return m;
 }
-

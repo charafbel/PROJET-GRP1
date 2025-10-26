@@ -5,9 +5,6 @@
 #include "matrix.h"
 #include <stdio.h>
 
-// Rayon Terrestre
-#define RRR 6378.388
-
 /* Structure servant au retour et au stockage des informations lors de la lecture */
 typedef struct {
     int dimension;
@@ -26,7 +23,6 @@ int distanceEucl(City* cityA, City* cityB);
 int distanceGeo(City* cityA, City* cityB);
 
 /* Fonctions utilitaires pour le mode GEO */
-double deg2rad(double deg);
 double latitude(City* city);
 double longitude(City* city);
 

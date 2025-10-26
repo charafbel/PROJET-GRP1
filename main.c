@@ -4,13 +4,12 @@
 #include <limits.h>
 #include <signal.h>
 #include <string.h>
+#include <time.h>
 #include <getopt.h>
 
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
-
-
 
 // VARIABLES GLOBALES :
 char* instance_name;
@@ -19,18 +18,20 @@ double temps_cpu;
 double longueur;
 int ij;
 
+/* Ces Variables globales servent a stocker des valeurs d'affichage globales */
 
+/* Structure servant au retour de la fonction brutforce
+ * Le but etant d'effectuer l'affichage dans la fonction main.
+ */
 typedef struct {
     int dimension;
     int bestDistance;
     int *bestPath;
 }Results;
 
-
-void  INThandler(int sig)
-{
+/* Fonction CTRL + C */
+void  INThandler(int sig){
      char  c;
-
      signal(sig, SIG_IGN);
      // actions...
      printf("arrêt avec i = %d\n",ij);
@@ -46,29 +47,29 @@ void  INThandler(int sig)
           printf("Je reprends avec i = %d\n",ij);
           signal(SIGINT, INThandler);
         }
-
      getchar(); // Get new line character
 }
 
-void swapArrVal(int *a, int *b) {
+/* Fonctions annexes servant au BrutForce */
+void swapArrVal(int *a, int *b) {                       /* Fonction simple d'echange de deux elements dans un tableau */
     int tmp = *a;
     *a = *b;
     *b = tmp;
 }
-
-bool nextPermutation(int *arr, int n){
-    int i = n-2;
+bool nextPermutation(int *arr, int n){     /* Fonction generant la idxutation suivante pour contourner le problème du nombre aberrant de combinaisons possibles */
+    int i = n-2; // On part de l'avant dernier element
+    // trouver l'indice le plus haut tel que arr[i] < arr[i + 1]
     while (i >= 0 && arr[i] >= arr[i + 1])
         i--;
     if (i < 0)
         return false;
-    // Étape 2 : trouver le plus petit élément à droite de i qui soit > arr[i]
+    // trouver le plus petit élément à droite de i qui soit > a arr[i]
     int j = n-1;
     while (arr[j] <= arr[i])
         j--;
-    // Étape 3 : échanger les deux
+    // echange
     swapArrVal(&arr[i], &arr[j]);
-    // Étape 4 : inverser la fin du tableau (partie après i)
+    // inversion de la fin du tableau.
     int k = i + 1;
     int l = n - 1;
     while (k < l){
@@ -78,8 +79,7 @@ bool nextPermutation(int *arr, int n){
     }
     return true;
 }
-
-int totalPathDistance(Matrix *m, int *chemin, int n) {
+int totalPathDistance(Matrix *m, int *chemin, int n){ /* Fonction simple servant a calculer la distance d'un chelmin */
     int sum = 0;
     for (int i = 0; i < n - 1; i++){
         sum += getDistance(m, chemin[i], chemin[i + 1]);
@@ -88,53 +88,59 @@ int totalPathDistance(Matrix *m, int *chemin, int n) {
     return sum;
 }
 
+/* Force Brute (Algorithme) */
 Results* brutForce(Matrix *m) {
     int dim = m->dimension;
-
     // Creation des tableaux.
-    int *perm = malloc(dim * sizeof(int));
+    int *idx = malloc(dim * sizeof(int));
     int *best = malloc(dim * sizeof(int));
-    if (!perm || !best) {
+    if (!idx || !best) {
         fprintf(stderr, "Error malloc (brutforce)\n");
         exit(EXIT_FAILURE);
     }
 
+    // Tableau d'indices 
     for (int i = 0; i < dim; i++){
-        perm[i] = i;
+        idx[i] = i;
     }
 
-    int bestDist = INT_MAX;
-    //signal(SIGINT, handle_sigint); // Intercepter Ctrl+C
+    int bestDist = INT_MAX; // On initialise la meilleure distance a un valeur ultra elevée et non depassable par le type int
 
-
-    do {
-        int d = totalPathDistance(m, perm, dim);
-
+    do { /* Test des permutations et allocation de la meilleure distance */
+        int d = totalPathDistance(m, idx, dim);
         if (d < bestDist) {
             bestDist = d;
             ij = bestDist;
-            memcpy(best, perm, dim * sizeof(int));
+            memcpy(best, idx, dim * sizeof(int));
         }
-    } while (nextPermutation(perm, dim));
+    } while (nextPermutation(idx, dim));
 
+    // Allocation des resultats dans la structure results
     Results* results = malloc(sizeof(Results));
     results->dimension = dim;
     results->bestDistance = bestDist;
     results->bestPath = malloc(dim * sizeof(int));
     memcpy(results->bestPath, best, dim * sizeof(int));
 
-    free(perm);
+    // Renvoie et Nettoyage memoire
+    free(idx);
     free(best);
     return results;
 }
 
 int main(int argc, char *argv[]){
     signal(SIGINT, INThandler); // Enregistrer le handler
+    // TEMPS CPU
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+
 
     if (argc < 2){
         fprintf(stderr, "Usage: %s <tadfile> [options]\n", argv[0]);
         exit(EXIT_FAILURE);
     }
+
 
     /* Gestion des FLAGS */
     int opt;
@@ -182,9 +188,6 @@ int main(int argc, char *argv[]){
         printf("  -m method, --m method    Calculation method (e.g., bf for brute force)\n");
         return 0;
     }
-    if (method != NULL) {
-        //printf("Method chosen: %s\n", method);
-    }
 
     if (optind >= argc) {
         fprintf(stderr, "Error: missing required <tadfile> argument\n");
@@ -201,13 +204,15 @@ int main(int argc, char *argv[]){
     }
 
     Infos* infos = readTsp(tsp);
-    printf("fait\n");
-    printf("DEBUG: Dimension lue par readTsp = %d\n", infos->dimension);
 
     /* Choix du type de fonction */
     int (*fctd)(City*, City*) = NULL;
     if (strcmp(infos->edgeType, "ATT") == 0)
-        fctd = distanceAtt; /* Inutile d'inclure les fonctions futures pour l'instant */
+        fctd = distanceAtt;
+    if (strcmp(infos->edgeType, "EUCL_2D") == 0)
+        fctd = distanceEucl;
+    if (strcmp(infos->edgeType, "GEO") == 0)
+        fctd = distanceGeo;
     if (fctd == NULL) {
         fprintf(stderr, "Edgetype unknown\n");
         free(infos->cityArray);
@@ -219,7 +224,6 @@ int main(int argc, char *argv[]){
     instance_name = argv[1];
 
     Matrix* m = distanceMatrix(infos, fctd);
-    printMatrix(m);
     Results* results;
     if (method && strcmp(method, "bf") == 0) {
         results = brutForce(m);
@@ -227,18 +231,19 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "Method not implemented or specified.\n");
     }
 
+    /* Vu que les fichiers tsp sont dans un fichier, pour l'affichage il faut eviter l'affichage du ./tsp/ */
     char *fn = strrchr(tsp_file, '/');
     fn++;
-
+    end = clock();
+    cpu_time_used = ((double) (end - start))/CLOCKS_PER_SEC;
+    /* Ecriture si save_flag actif */
     if (save_flag) {
-        //printf("Save to file : %s\n", file_name);
-        FILE *out = fopen(file_name, "w");
+        FILE *out = fopen(file_name, "a");
         if (out == NULL){
             fprintf(stderr, "Error opening file %s for writing\n", file_name);
             exit(EXIT_FAILURE);
         }
-/*
-        fprintf(out, "%s ; %s ; %f ; %d ; [", fn, method, 0.00, results->bestDistance);
+        fprintf(out, "%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
         for (int i = 0; i < results->dimension; i++) {
             fprintf(out, "%d", results->bestPath[i]);
             if (i != results->dimension-1) {
@@ -246,12 +251,11 @@ int main(int argc, char *argv[]){
             }
         }
         fprintf(out, "]");
-        close(out);
-    } else {
-*/
+        fclose(out);
     }
+    /* Affichage console */
     printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-    printf("%s ; %s ; %f ; %d ; [", fn, method, 0.00, results->bestDistance);
+    printf("%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
     for (int i = 0; i < results->dimension; i++) {
         printf("%d", results->bestPath[i] + 1);
         if (i != results->dimension-1) {

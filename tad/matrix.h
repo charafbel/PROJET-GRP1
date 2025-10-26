@@ -13,6 +13,4 @@ void freeMatrix(Matrix* m);
 void setDistance(Matrix* m, int i, int j, int distance);
 int getDistance(Matrix* m, int i, int j);
 
-
-
 #endif //MATRIX_H
