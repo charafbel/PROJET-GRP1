@@ -7,6 +7,7 @@ TAD_DIR = ./tad
 
 # Fichiers sources
 SRC = $(SRC_DIR)/main.c \
+      $(SRC_DIR)/nn.c \
       $(TAD_DIR)/city.c \
       $(TAD_DIR)/matrix.c \
       $(TAD_DIR)/tsp.c

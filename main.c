@@ -10,6 +10,8 @@
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
+#include "nn.h"
+
 
 // VARIABLES GLOBALES :
 char* methode;
@@ -22,11 +24,7 @@ int ij;
 /* Structure servant au retour de la fonction brutforce
  * Le but etant d'effectuer l'affichage dans la fonction main.
  */
-typedef struct {
-    int dimension;
-    int bestDistance;
-    int *bestPath;
-}Results;
+
 
 /* Fonction CTRL + C */
 void  INThandler(int sig){
@@ -130,6 +128,7 @@ Results* brutForce(Matrix *m) {
 int main(int argc, char *argv[]){
     signal(SIGINT, INThandler); // Enregistrer le handler
     // TEMPS CPU
+    Results* results;
     clock_t start, end;
     double cpu_time_used;
     start = clock();
@@ -170,11 +169,15 @@ int main(int argc, char *argv[]){
                 break;
             case 'm':
                 if (strcmp(optarg, "bf") == 0) {
-                    method = "bf";
-                } else {
+                    method = "bf";}
+                if (strcmp(optarg, "nn") == 0) {
+                    method = "nn";
+                }
+                 if(method == NULL)
+                { 
                     fprintf(stderr, "Error unknown method :  %s\n", optarg);
                     exit(EXIT_FAILURE);
-                }
+                    }
                 break;
             case 'o':
                 save_flag = 1;
@@ -233,13 +236,18 @@ int main(int argc, char *argv[]){
 
     methode = infos->edgeType;
 
-    Matrix* m = distanceMatrix(infos, fctd);
-    Results* results;
-    if (method && strcmp(method, "bf") == 0) {
-        results = brutForce(m);
-    } else {
-        fprintf(stderr, "Method not implemented or specified.\n");
-    }
+Matrix* m = distanceMatrix(infos, fctd);
+
+if (method && strcmp(method, "bf") == 0) {
+    results = brutForce(m);
+} 
+else if (method && strcmp(method, "nn") == 0) {
+    results = nearestNeighbour(m,9);
+} 
+else {
+    fprintf(stderr, "Method not implemented or specified.\n");
+    return 1; // ou autre selon ton cas
+}
 
     /* Vu que les fichiers tsp sont dans un fichier, pour l'affichage il faut eviter l'affichage du ./tsp/ */
 
