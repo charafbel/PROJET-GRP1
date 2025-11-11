@@ -7,10 +7,13 @@
 #include <time.h>
 #include <getopt.h>
 
+
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
 #include "nn.h"
+#include "randomwalk.h"
+
 
 
 // VARIABLES GLOBALES :
@@ -173,6 +176,9 @@ int main(int argc, char *argv[]){
                 if (strcmp(optarg, "nn") == 0) {
                     method = "nn";
                 }
+                if (strcmp(optarg, "rw") == 0) {           
+     method = "rw";                          
+    }
                  if(method == NULL)
                 { 
                     fprintf(stderr, "Error unknown method :  %s\n", optarg);
@@ -243,10 +249,12 @@ if (method && strcmp(method, "bf") == 0) {
 } 
 else if (method && strcmp(method, "nn") == 0) {
     results = nearestNeighbour(m,9);
-} 
+}
+else if (method && strcmp(method, "rw") == 0) {   
+    results = randomWalk(m);}
 else {
     fprintf(stderr, "Method not implemented or specified.\n");
-    return 1; // ou autre selon ton cas
+    return 1;
 }
 
     /* Vu que les fichiers tsp sont dans un fichier, pour l'affichage il faut eviter l'affichage du ./tsp/ */
