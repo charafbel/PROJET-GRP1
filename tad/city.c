@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-City* createCity(int id, int xCoor, int yCoor){
+City* createCity(int id, double xCoor, double yCoor){
     City* city = malloc(sizeof(City));
     if (city == NULL) {
         perror("malloc cityCreate");

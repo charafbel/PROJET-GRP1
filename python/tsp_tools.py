@@ -41,7 +41,7 @@ def distance_eucl(city_a, city_b,coord)->int:
     x_offset = x_b - x_a
     y_offset = y_b - y_a
     dist = math.sqrt(x_offset*x_offset+y_offset*y_offset)
-    return dist
+    return round(dist)
 
 def distance_att(city_a, city_b,coord):
     x_a = coord[city_a][0]

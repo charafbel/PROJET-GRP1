@@ -223,10 +223,10 @@ int main(int argc, char *argv[]){
     Infos* infos = readTsp(tsp);
 
     /* Choix du type de fonction */
-    int (*fctd)(City*, City*) = NULL;
+    double (*fctd)(City*, City*) = NULL;
     if (strcmp(infos->edgeType, "ATT") == 0)
         fctd = distanceAtt;
-    if (strcmp(infos->edgeType, "EUCL_2D") == 0)
+    if (strcmp(infos->edgeType, "EUC_2D") == 0)
         fctd = distanceEucl;
     if (strcmp(infos->edgeType, "GEO") == 0)
         fctd = distanceGeo;
@@ -268,7 +268,11 @@ int main(int argc, char *argv[]){
             fprintf(stderr, "Error opening file %s for writing\n", file_name);
             exit(EXIT_FAILURE);
         }
-        fprintf(out, "%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
+        if (strcmp(infos->edgeType, "EUC_2D") == 0) {
+            fprintf(out, "%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
+        } else {
+            fprintf(out, "%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
+        }
         for (int i = 0; i < results->dimension; i++) {
             fprintf(out, "%d", results->bestPath[i]);
             if (i != results->dimension-1) {
@@ -279,11 +283,15 @@ int main(int argc, char *argv[]){
         fclose(out);
     }
     if (cano_flag) {
-        printf("%d",canonicalTourLength(m));
+        printf("%f",canonicalTourLength(m));
     } else {
         /* Affichage console */
         printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-        printf("%s ; %s ; %f ; %d ; [", fn, method, cpu_time_used, results->bestDistance);
+        if (strcmp(infos->edgeType, "EUC_2D") == 0) {
+            printf("%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
+        } else {
+            printf("%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
+        }
         for (int i = 0; i < results->dimension; i++) {
             printf("%d", results->bestPath[i] + 1);
             if (i != results->dimension-1) {

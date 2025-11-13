@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "city.h"
-#include "matrix.h"
+#include "city.h"     // Doit utiliser des double pour City->x, City->y
+#include "matrix.h"   // Doit utiliser des double pour la matrice
 #define RRR 6378.388  // Rayon approximatif de la Terre en km
-#define M_PI 3.1415926535  // Warning de redefinition, probable bug (MACOS)
+#define M_PI 3.1415926535
 
 typedef struct{
     int dimension;
@@ -15,20 +15,19 @@ typedef struct{
     char edgeType[12];
 } Infos ;
 
-/* FCT DE DISTANCES : */
+// Définition du type de pointeur de fonction que nous utiliserons
+// Il attend une fonction qui prend deux City* et renvoie un double.
+typedef double (*fctd)(City*, City*);
 
-/* Fonctions Géographiques */
-double latitude(City* city){
-    double deg = city->x;
-    double min = city->x - deg;
-    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
+double latitude(City* city) {
+    return M_PI * city->x / 180.0;
 }
+
 double longitude(City* city) {
-    double deg = city->y;
-    double min = city->y - deg;
-    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
+    return M_PI * city->y / 180.0;
 }
-int distanceGeo(City* cityA, City* cityB) {
+
+double distanceGeo(City* cityA, City* cityB) {
     double latA = latitude(cityA);
     double latB = latitude(cityB);
     double lonA = longitude(cityA);
@@ -36,38 +35,37 @@ int distanceGeo(City* cityA, City* cityB) {
     double q1 = cos(lonA - lonB);
     double q2 = cos(latA - latB);
     double q3 = cos(latA + latB);
-    double dist = RRR * acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0;
-    return (int)(dist);
+    double arg = 0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3);
+    if (arg > 1.0) arg = 1.0;
+    if (arg < -1.0) arg = -1.0;
+    double dab = RRR * acos(arg);
+    return floor(dab + 0.5);
 }
 
+double distanceEucl(City* cityA, City* cityB) {
+    double xd = cityA->x - cityB->x;
+    double yd = cityA->y - cityB->y;
+    double dist = sqrt(xd * xd + yd * yd);
+    return dist;  // ou return round(dist);
+}
 
-/* Distances Mathematiques */
-int distanceAtt(City* cityA, City* cityB) {
+double distanceAtt(City* cityA, City* cityB) {
     double xd = (double)(cityA->x - cityB->x);
     double yd = (double)(cityA->y - cityB->y);
 
     double rij = sqrt((xd * xd + yd * yd) / 10.0);
-    int tij = (int)(rij + 0.5);
+    int tij = (int)(rij + 0.5); // Arrondi à l'entier
     if (tij < rij)
         tij++;
 
+    // Renvoie l'entier casté en double (ex: 123.0)
     return tij;
 }
-int distanceEucl(City* cityA, City* cityB){
-    double x_a = cityA->x;
-    double y_a = cityA->y;
-    double x_b = cityB->x;
-    double y_b = cityB->y;
-    double x_offset = x_b - x_a;
-    double y_offset = y_b - y_a;
-    double dist = sqrt(x_offset * x_offset + y_offset * y_offset);
+/* ====================================================================== */
+/* Lecture et remplissage (Mis à jour pour double) */
+/* ====================================================================== */
 
-    return (int)(dist + 0.5);
-}
-
-/* Lecture et remplissage */
 void printMatrix(Matrix *m) {
-    /* Fonction ne servant pas directement au projet mais permettant un debugage plus efficace */
     if (m == NULL) {
         fprintf(stderr, "Matrix is NULL\n");
         exit(EXIT_FAILURE);
@@ -77,78 +75,97 @@ void printMatrix(Matrix *m) {
     for (int i = 0; i < m->dimension; i++) {
         for (int j = 0; j < m->dimension; j++) {
             if (j >= i){
-                // On est sur ou au-dessus de la diagonale : on affiche la valeur
-                printf("%d\t", getDistance(m, i, j));
+                // !! MODIFIÉ !! : %g gère les .0 et les .75
+                printf("%g\t", getDistance(m, i, j));
             } else{
-                // On est sous la diagonale : on affiche du vide pour l'alignement
                 printf("\t");
             }
         }
         printf("\n");
     }
 }
-int canonicalTourLength(Matrix* m) {
-    int total = 0;
+
+double canonicalTourLength(Matrix* m) {
+    double total = 0.0;
     int n = m->dimension;
     for (int i = 0; i < n - 1; i++) {
         total += getDistance(m, i, i + 1);
     }
-    total += getDistance(m, n - 1, 0); // retour au point de départ
+    total += getDistance(m, n - 1, 0);
     return total;
 }
+
 /* Lecture du fichier tsp */
 Infos* readTsp(FILE *f){
     char line[1024];
     Infos* infos = malloc(sizeof(Infos));
     infos->dimension = 0;
     strcpy(infos->edgeType, "");
+    char key[100];
+    char value[100];
 
-    // Boucle de lecture TSP :
+    // Boucle de lecture TSP (ROBUSTE) :
     while (fgets(line, 1024, f)) {
-        if (strncmp(line, "DIMENSION : ", 12) == 0) {
-            sscanf(line, "DIMENSION : %d ", &(infos->dimension)); // On capture la valeur de DIMENSION SELON LE MODELE DU FICHIER
-        }
-        if (strncmp(line, "EDGE_WEIGHT_TYPE", 16) == 0){
-            sscanf(line, "EDGE_WEIGHT_TYPE : %s", infos->edgeType); // De Même pour le type de distances
-        }
-        // On s'arrete une fois avoir depassé la ligne NODE_COORD_SECTION
-        if (strncmp(line, "NODE_COORD_SECTION", strlen("NODE_COORD_SECTION")) == 0) {
+        if (strncmp(line, "NODE_COORD_SECTION", 18) == 0) {
             fgets(line, 1024, f);
-            break; // Pour aller dans la boucle de lecture des coordonnées
+            break;
+        }
+        if (sscanf(line, " %99[^: \t] : %99s", key, value) == 2) {
+            for (int i = strlen(key) - 1; i >= 0 && (key[i] == ' ' || key[i] == '\t'); i--) {
+                key[i] = '\0';
+            }
+            if (strcmp(key, "DIMENSION") == 0) {
+                infos->dimension = atoi(value);
+            }
+            else if (strcmp(key, "EDGE_WEIGHT_TYPE") == 0) {
+                strncpy(infos->edgeType, value, 11);
+                infos->edgeType[11] = '\0';
+            }
         }
     }
-
-    if (infos->dimension <= 0)// Prevenir l'erreur d'un tableau vide ou negatif.
+    if (infos->dimension <= 0) {
+        fprintf(stderr, "Erreur: Dimension non lue ou invalide (%d)\n", infos->dimension);
         exit(1);
-    infos->cityArray = malloc(infos->dimension* sizeof(City*));
+    }
+    infos->cityArray = malloc(infos->dimension * sizeof(City*));
 
-    /* Lecture de toutes les villes selon le schéma TSP */
+    // Lecture des coordonnées (correcte, lit des doubles)
     for (int i = 0; i < infos->dimension; i++) {
         int id = 0;
-        int x= 0;
-        int y= 0;
+        double x = 0.0;
+        double y = 0.0;
         City* city;
-        sscanf(line, "%d %d %d", &id, &x, &y);
+
+        if (sscanf(line, "%d %lf %lf", &id, &x, &y) != 3) {
+            if (strncmp(line, "EOF", 3) == 0) break;
+            fgets(line, 1024, f);
+            i--;
+            continue;
+        }
+
+        // createCity doit accepter (int, double, double)
         city = createCity(id, x, y);
+
         fgets(line, 1024, f);
         infos->cityArray[i] = city;
     }
-
-    /* Terminaison */
     fclose(f);
     return infos;
 }
+
 /* Generation de la matrice des distances */
-Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*)){ // POINTEUR DE FCT PARAMETRé DANS LE MAIN.
+Matrix* distanceMatrix(Infos* infos, fctd fctd){ // <-- Utilise le type double
     Matrix* m = MatrixCreate(infos->dimension);
     if (!m) {
         fprintf(stderr, "MatrixCreate failed\n");
         exit(EXIT_FAILURE);
     }
-    /* Remplissage */
+
     for (int i = 0; i < infos->dimension; i++) {
         for (int j = i + 1; j < infos->dimension; j++) {
-            int dist = fctd(infos->cityArray[i], infos->cityArray[j]);
+            // fctd() renvoie un double
+            double dist = fctd(infos->cityArray[i], infos->cityArray[j]);
+            // setDistance doit accepter un double
             setDistance(m, i, j, dist);
         }
     }

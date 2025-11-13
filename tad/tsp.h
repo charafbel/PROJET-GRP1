@@ -14,14 +14,14 @@ typedef struct {
 
 /* Fonctions de lecture et de traitement */
 Infos* readTsp(FILE *f);
-Matrix* distanceMatrix(Infos* infos, int (*fctd)(City*, City*));
+Matrix* distanceMatrix(Infos* infos, double (*fctd)(City*, City*));
 void printMatrix(Matrix *m);
 
 /* Fonctions de distance */
-int distanceAtt(City* cityA, City* cityB);
-int distanceEucl(City* cityA, City* cityB);
-int distanceGeo(City* cityA, City* cityB);
-int canonicalTourLength(Matrix* m);
+double distanceAtt(City* cityA, City* cityB);
+double distanceEucl(City* cityA, City* cityB);
+double distanceGeo(City* cityA, City* cityB);
+double canonicalTourLength(Matrix* m);
 
 /* Fonctions utilitaires pour le mode GEO */
 double latitude(City* city);
