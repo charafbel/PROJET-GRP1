@@ -7,7 +7,7 @@ TAD_DIR = ./tad
 
 # Fichiers sources
 SRC = $(SRC_DIR)/main.c \
-      $(SRC_DIR)/nn.c \
+      $(SRC_DIR)/nearestneighbor.c \
       $(SRC_DIR)/randomwalk.c \
       $(TAD_DIR)/city.c \
       $(TAD_DIR)/matrix.c \

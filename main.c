@@ -11,7 +11,7 @@
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
-#include "nn.h"
+#include "nearestneighbor.h"
 #include "randomwalk.h"
 
 
@@ -171,19 +171,16 @@ int main(int argc, char *argv[]){
                 tsp_file = optarg;
                 break;
             case 'm':
-                if (strcmp(optarg, "bf") == 0) {
-                    method = "bf";}
-                if (strcmp(optarg, "nn") == 0) {
+                if (strcmp(optarg, "bf") == 0)
+                    method = "bf";
+                if (strcmp(optarg, "nn") == 0)
                     method = "nn";
-                }
-                if (strcmp(optarg, "rw") == 0) {           
-     method = "rw";                          
-    }
-                 if(method == NULL)
-                { 
+                if (strcmp(optarg, "rw") == 0)
+                method = "rw";
+                if(method == NULL){
                     fprintf(stderr, "Error unknown method :  %s\n", optarg);
                     exit(EXIT_FAILURE);
-                    }
+                }
                 break;
             case 'o':
                 save_flag = 1;
@@ -242,20 +239,20 @@ int main(int argc, char *argv[]){
 
     methode = infos->edgeType;
 
-Matrix* m = distanceMatrix(infos, fctd);
+    Matrix* m = distanceMatrix(infos, fctd);
 
-if (method && strcmp(method, "bf") == 0) {
-    results = brutForce(m);
-} 
-else if (method && strcmp(method, "nn") == 0) {
-    results = nearestNeighbour(m,9);
-}
-else if (method && strcmp(method, "rw") == 0) {   
-    results = randomWalk(m);}
-else {
-    fprintf(stderr, "Method not implemented or specified.\n");
-    return 1;
-}
+    if (method && strcmp(method, "bf") == 0) {
+        results = brutForce(m);
+    }
+    else if (method && strcmp(method, "nn") == 0) {
+        results = nearestNeighbour(m,9);
+    }
+    else if (method && strcmp(method, "rw") == 0) {
+        results = randomWalk(m);}
+    else {
+        fprintf(stderr, "Method not implemented or specified.\n");
+        return 1;
+    }
 
     /* Vu que les fichiers tsp sont dans un fichier, pour l'affichage il faut eviter l'affichage du ./tsp/ */
 

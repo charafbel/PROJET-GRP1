@@ -23,8 +23,9 @@ Results* randomWalk(Matrix* m) {
     if (!m || m->dimension <= 0)   return NULL;
 
     /*  RNG une seule fois par processus */
-           static int x = 0;
-     if (!x) { srand((unsigned int)time(NULL)); x = 1; }
+    static int x = 0;
+    if (!x)
+     srand((unsigned int)time(NULL)); x = 1;
 
     int n = m->dimension;
 
