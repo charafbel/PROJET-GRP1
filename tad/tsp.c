@@ -19,12 +19,17 @@ typedef struct{
 // Il attend une fonction qui prend deux City* et renvoie un double.
 typedef double (*fctd)(City*, City*);
 
+// dans tsp.c
 double latitude(City* city) {
-    return M_PI * city->x / 180.0;
+    double deg = (int)city->x;
+    double min = city->x - deg;
+    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
 }
 
 double longitude(City* city) {
-    return M_PI * city->y / 180.0;
+    double deg = (int)city->y;
+    double min = city->y - deg;
+    return M_PI * (deg + 5.0 * min / 3.0 ) / 180.0;
 }
 
 double distanceGeo(City* cityA, City* cityB) {
@@ -39,14 +44,15 @@ double distanceGeo(City* cityA, City* cityB) {
     if (arg > 1.0) arg = 1.0;
     if (arg < -1.0) arg = -1.0;
     double dab = RRR * acos(arg);
-    return floor(dab + 0.5);
+    return  (int)(dab + 1.0);
 }
 
+// dans tsp.c
 double distanceEucl(City* cityA, City* cityB) {
     double xd = cityA->x - cityB->x;
     double yd = cityA->y - cityB->y;
     double dist = sqrt(xd * xd + yd * yd);
-    return dist;  // ou return round(dist);
+    return round(dist); // <-- Ajoutez round() de <math.h>
 }
 
 double distanceAtt(City* cityA, City* cityB) {

@@ -4,6 +4,7 @@
 #include "tad/tsp.h"
 #include "randomwalk.h"
 #include <stdbool.h>
+#include <float.h>
 
 // Fonctions utilitaires :
 static void swapArrVal(int *a, int *b) {
@@ -60,7 +61,7 @@ Results *randomWalk(Matrix *m) {
     shuffle(perm, n);
 
     /* distance de la tournée */
-    int dist = totalPathDistance(m, perm, n);
+    double dist = totalPathDistance(m, perm, n);
 
     /* empaqueter dans Results (mêmes conventions que le reste du projet) */
     Results *result = (Results *) malloc(sizeof(Results));

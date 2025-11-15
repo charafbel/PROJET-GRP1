@@ -4,6 +4,7 @@
 #include <signal.h>
 #include "tad/matrix.h"
 #include "nearestneighbor.h"
+#include <float.h>
 
 Results* nearestNeighbour(Matrix* m,int k){
     int dim = m->dimension;
@@ -21,13 +22,13 @@ Results* nearestNeighbour(Matrix* m,int k){
 
     for (int i = 1; i < dim; i++)
     {
-        int dist_min = INT_MAX;
+        double dist_min = __DBL_MAX__;
         int nextCity;
         for (int j = 0; j < dim; j++)
         {
             if (!visited[j])
             {
-                int dist = getDistance(m, currentCity, j);
+                double dist = getDistance(m, currentCity, j);
                 if (dist < dist_min)
                 {
                     dist_min = dist;
