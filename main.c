@@ -13,135 +13,83 @@
 #include "tad/tsp.h"
 #include "nearestneighbor.h"
 #include "randomwalk.h"
+#include "brutforce.h"
 
-
-
-// VARIABLES GLOBALES :
 char* methode;
 double temps_cpu;
 double longueur;
 int ij;
 
-/* Ces Variables globales servent a stocker des valeurs d'affichage globales */
-
-/* Structure servant au retour de la fonction brutforce
- * Le but etant d'effectuer l'affichage dans la fonction main.
- */
-
-
-/* Fonction CTRL + C */
 void  INThandler(int sig){
-     char  c;
-     signal(sig, SIG_IGN);
-     // actions...
-     printf("arrêt avec i = %d\n",ij);
-     printf("OUCH, did you hit Ctrl-C?\n"
-            "Do you really want to quit? [y/n] ");
-     c = getchar();
-     if (c == 'y' || c == 'Y'){
-       // actions
-       printf("sortie avec i = %d\n",ij);
-       exit(0);
-     }
-     else{
-          printf("Je reprends avec i = %d\n",ij);
-          signal(SIGINT, INThandler);
-        }
-     getchar(); // Get new line character
+    char  c;
+    signal(sig, SIG_IGN);
+    // actions...
+    printf("arrêt avec i = %d\n",ij);
+    printf("OUCH, did you hit Ctrl-C?\n"
+           "Do you really want to quit? [y/n] ");
+    c = getchar();
+    if (c == 'y' || c == 'Y'){
+        // actions
+        printf("sortie avec i = %d\n",ij);
+        exit(0);
+    }
+    else{
+        printf("Je reprends avec i = %d\n",ij);
+        signal(SIGINT, INThandler);
+    }
+    getchar(); // Get new line character
 }
 
-/* Fonctions annexes servant au BrutForce */
-void swapArrVal(int *a, int *b) {                       /* Fonction simple d'echange de deux elements dans un tableau */
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-bool nextPermutation(int *arr, int n){     /* Fonction generant la idxutation suivante pour contourner le problème du nombre aberrant de combinaisons possibles */
-    int i = n-2; // On part de l'avant dernier element
-    // trouver l'indice le plus haut tel que arr[i] < arr[i + 1]
-    while (i >= 0 && arr[i] >= arr[i + 1])
-        i--;
-    if (i < 0)
-        return false;
-    // trouver le plus petit élément à droite de i qui soit > a arr[i]
-    int j = n-1;
-    while (arr[j] <= arr[i])
-        j--;
-    // echange
-    swapArrVal(&arr[i], &arr[j]);
-    // inversion de la fin du tableau.
-    int k = i + 1;
-    int l = n - 1;
-    while (k < l){
-        swapArrVal(&arr[k], &arr[l]);
-        k++;
-        l--;
-    }
-    return true;
-}
-int totalPathDistance(Matrix *m, int *chemin, int n){ /* Fonction simple servant a calculer la distance d'un chelmin */
-    int sum = 0;
-    for (int i = 0; i < n - 1; i++){
-        sum += getDistance(m, chemin[i], chemin[i + 1]);
-    }
-    sum += getDistance(m, chemin[n - 1], chemin[0]);
-    return sum;
-}
-
-/* Force Brute (Algorithme) */
-Results* brutForce(Matrix *m) {
-    int dim = m->dimension;
-    // Creation des tableaux.
-    int *idx = malloc(dim * sizeof(int));
-    int *best = malloc(dim * sizeof(int));
-    if (!idx || !best) {
-        fprintf(stderr, "Error malloc (brutforce)\n");
+void printOutputFile(char* file_name, Results* results, Infos* infos, char* fn, char* method, double cpu_time_used){
+    FILE *out = fopen(file_name, "a");
+    if (out == NULL){
+        fprintf(stderr, "Error opening file %s for writing\n", file_name);
         exit(EXIT_FAILURE);
     }
-
-    // Tableau d'indices 
-    for (int i = 0; i < dim; i++){
-        idx[i] = i;
+    if (strcmp(infos->edgeType, "EUC_2D") == 0) {
+        fprintf(out, "%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
+    } else {
+        fprintf(out, "%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
     }
-
-    int bestDist = INT_MAX; // On initialise la meilleure distance a un valeur ultra elevée et non depassable par le type int
-
-    do { /* Test des permutations et allocation de la meilleure distance */
-        int d = totalPathDistance(m, idx, dim);
-        if (d < bestDist) {
-            bestDist = d;
-            ij = bestDist;
-            memcpy(best, idx, dim * sizeof(int));
+    for (int i = 0; i < results->dimension; i++) {
+        fprintf(out, "%d", results->bestPath[i]);
+        if (i != results->dimension-1) {
+            fprintf(out, ",");
         }
-    } while (nextPermutation(idx, dim));
-
-    // Allocation des resultats dans la structure results
-    Results* results = malloc(sizeof(Results));
-    results->dimension = dim;
-    results->bestDistance = bestDist;
-    results->bestPath = malloc(dim * sizeof(int));
-    memcpy(results->bestPath, best, dim * sizeof(int));
-
-    // Renvoie et Nettoyage memoire
-    free(idx);
-    free(best);
-    return results;
+    }
+    fprintf(out, "]\n");
+    fclose(out);
+}
+void printOutput(Results* results, Infos* infos, char* fn, char* method, double cpu_time_used){
+    printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
+    if (strcmp(infos->edgeType, "EUC_2D") == 0) {
+        printf("%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
+    } else {
+        printf("%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
+    }
+    for (int i = 0; i < results->dimension; i++) {
+        printf("%d", results->bestPath[i] + 1);
+        if (i != results->dimension-1) {
+            printf(",");
+        }
+    }
+    printf("]\n");
 }
 
+
+
 int main(int argc, char *argv[]){
-    signal(SIGINT, INThandler); // Enregistrer le handler
-    // TEMPS CPU
+    signal(SIGINT, INThandler);
     Results* results;
     clock_t start, end;
     double cpu_time_used;
-    start = clock();
-
 
     if (argc < 2){
         fprintf(stderr, "Usage: %s <tadfile> [options]\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
+    start = clock();
 
     /* Gestion des FLAGS */
     int opt;
@@ -176,7 +124,9 @@ int main(int argc, char *argv[]){
                 if (strcmp(optarg, "nn") == 0)
                     method = "nn";
                 if (strcmp(optarg, "rw") == 0)
-                method = "rw";
+                    method = "rw";
+                if (strcmp(optarg, "2optrw") == 0)
+                    method = "2optrw";
                 if(method == NULL){
                     fprintf(stderr, "Error unknown method :  %s\n", optarg);
                     exit(EXIT_FAILURE);
@@ -194,6 +144,8 @@ int main(int argc, char *argv[]){
                 exit(EXIT_FAILURE);
         }
     }
+
+    // Verifications
     if (!method) {
         fprintf(stderr, "Error: missing -m <method> (e.g., bf)\n");
         exit(EXIT_FAILURE);
@@ -208,12 +160,13 @@ int main(int argc, char *argv[]){
         printf("  -m method, --m method    Calculation method (bf for brute force)\n");
         return 0;
     }
-
     if (tsp_file == NULL) {
         fprintf(stderr, "Error: missing required <tadfile> argument\n");
         exit(EXIT_FAILURE);
     }
-    /* ------- EXECUTION DU CODE --------- */
+
+
+    // Executioon
     FILE *tsp = fopen(tsp_file, "r");
     if (tsp == NULL) {
         fprintf(stderr, "(Open TSP) Cant open the file.\n");
@@ -238,7 +191,6 @@ int main(int argc, char *argv[]){
     }
 
     methode = infos->edgeType;
-
     Matrix* m = distanceMatrix(infos, fctd);
 
     if (method && strcmp(method, "bf") == 0) {
@@ -248,7 +200,12 @@ int main(int argc, char *argv[]){
         results = nearestNeighbour(m,9);
     }
     else if (method && strcmp(method, "rw") == 0) {
-        results = randomWalk(m);}
+        results = randomWalk(m);
+    }
+    else if (method && strcmp(method, "2optrw") == 0) {
+        results = randomWalk(m);
+        results = twoOptrw(m, results);
+    }
     else {
         fprintf(stderr, "Method not implemented or specified.\n");
         return 1;
@@ -263,42 +220,12 @@ int main(int argc, char *argv[]){
 
     /* Ecriture si save_flag actif */
     if (save_flag) {
-        FILE *out = fopen(file_name, "a");
-        if (out == NULL){
-            fprintf(stderr, "Error opening file %s for writing\n", file_name);
-            exit(EXIT_FAILURE);
-        }
-        if (strcmp(infos->edgeType, "EUC_2D") == 0) {
-            fprintf(out, "%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
-        } else {
-            fprintf(out, "%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
-        }
-        for (int i = 0; i < results->dimension; i++) {
-            fprintf(out, "%d", results->bestPath[i]);
-            if (i != results->dimension-1) {
-                fprintf(out, ",");
-            }
-        }
-        fprintf(out, "]\n");
-        fclose(out);
+        printOutputFile(file_name, results, infos, fn, method, cpu_time_used);
     }
     if (cano_flag) {
         printf("%f",canonicalTourLength(m));
     } else {
-        /* Affichage console */
-        printf("Instance ; Méthode ; Temps CPU (sec) ; Longueur ; Tour\n");
-        if (strcmp(infos->edgeType, "EUC_2D") == 0) {
-            printf("%s ; %s ; %f ; %f ; [", fn, method, cpu_time_used, results->bestDistance);
-        } else {
-            printf("%s ; %s ; %f ; %g ; [", fn, method, cpu_time_used, results->bestDistance);
-        }
-        for (int i = 0; i < results->dimension; i++) {
-            printf("%d", results->bestPath[i] + 1);
-            if (i != results->dimension-1) {
-                printf(",");
-            }
-        }
-        printf("]\n");
+        printOutput(results, infos, fn, method, cpu_time_used);
     }
 
     /* Liberation Memoire */

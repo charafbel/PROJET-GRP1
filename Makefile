@@ -9,6 +9,7 @@ TAD_DIR = ./tad
 SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/nearestneighbor.c \
       $(SRC_DIR)/randomwalk.c \
+      $(SRC_DIR)/brutforce.c \
       $(TAD_DIR)/city.c \
       $(TAD_DIR)/matrix.c \
       $(TAD_DIR)/tsp.c
