@@ -14,7 +14,7 @@ Results* nearestNeighbour(Matrix* m,int k){
     Results* results = malloc(sizeof(Results));
     results->dimension = dim;
     results->bestPath = malloc(dim * sizeof(int));
-    results->bestDistance = k;
+    results->bestDistance = 0;
     int currentCity = k;
     visited[currentCity] = true;
     results->bestPath[0] = currentCity;
