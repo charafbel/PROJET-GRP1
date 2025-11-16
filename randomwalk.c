@@ -22,7 +22,7 @@ static void reverse_segment(int* path, int start, int end) {
 }
 
 /* Determine longueur cycle fermé qui est défini par chemin[0/n-1]  */
-static double totalPathDistance(Matrix *m, const int *chemin, int n) {
+double totalPathDistance2(Matrix *m, const int *chemin, int n) {
     double somme = 0;
     for (int i = 0; i < n - 1; i++) {
         somme += getDistance(m, chemin[i], chemin[i + 1]);
@@ -61,7 +61,7 @@ Results *randomWalk(Matrix *m) {
     shuffle(perm, n);
 
     /* distance de la tournée */
-    double dist = totalPathDistance(m, perm, n);
+    double dist = totalPathDistance2(m, perm, n);
 
     /* empaqueter dans Results (mêmes conventions que le reste du projet) */
     Results *result = (Results *) malloc(sizeof(Results));

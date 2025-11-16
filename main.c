@@ -14,6 +14,7 @@
 #include "nearestneighbor.h"
 #include "randomwalk.h"
 #include "brutforce.h"
+#include "ga.h"
 
 char* methode;
 double temps_cpu;
@@ -119,19 +120,22 @@ int main(int argc, char *argv[]){
                 tsp_file = optarg;
                 break;
             case 'm':
-                if (strcmp(optarg, "bf") == 0)
-                    method = "bf";
-                if (strcmp(optarg, "nn") == 0)
-                    method = "nn";
-                if (strcmp(optarg, "rw") == 0)
-                    method = "rw";
-                if (strcmp(optarg, "2optrw") == 0)
-                    method = "2optrw";
-                if(method == NULL){
-                    fprintf(stderr, "Error unknown method :  %s\n", optarg);
-                    exit(EXIT_FAILURE);
-                }
-                break;
+    if (strcmp(optarg, "bf") == 0)
+        method = "bf";
+    else if (strcmp(optarg, "nn") == 0)
+        method = "nn";
+    else if (strcmp(optarg, "rw") == 0)
+        method = "rw";
+    else if (strcmp(optarg, "2optrw") == 0)
+        method = "2optrw";
+    else if (strcmp(optarg, "ga") == 0)
+        method = "ga";
+    else {
+        fprintf(stderr, "Error unknown method : %s\n", optarg);
+        exit(EXIT_FAILURE);
+    }
+    break;
+
             case 'o':
                 save_flag = 1;
                 file_name = optarg;
@@ -205,6 +209,9 @@ int main(int argc, char *argv[]){
     else if (method && strcmp(method, "2optrw") == 0) {
         results = randomWalk(m);
         results = twoOptrw(m, results);
+    }
+    else if (method && strcmp(method, "ga") == 0) {
+    results = geneticAlgorithm(m);
     }
     else {
         fprintf(stderr, "Method not implemented or specified.\n");

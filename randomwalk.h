@@ -9,5 +9,6 @@
 /* Renvoie une tournée aléatoire et on calcule longueur en utilisant la matrice */
 Results* randomWalk(Matrix* m);
 Results* twoOptrw(Matrix* mat, Results* res);
+double totalPathDistance2(Matrix *m, const int *chemin, int n);
 
 #endif
