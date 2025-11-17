@@ -12,7 +12,8 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/brutforce.c \
       $(TAD_DIR)/city.c \
       $(TAD_DIR)/matrix.c \
-      $(TAD_DIR)/tsp.c
+      $(TAD_DIR)/tsp.c \
+      $(SRC_DIR)/ga.c
 
 # Fichiers objets (automatiquement dérivés)
 OBJ = $(SRC:.c=.o)
