@@ -8,19 +8,19 @@
 #include "randomwalk.h"
 #include "ga.h"
 
-
-
 void mutate(int *path, int n) {
     int i = rand() % n;
     int j = rand() % n;
     int temp = path[i];
     path[i] = path[j];
-    path[j] = temp;}
+    path[j] = temp;
+}
 
 
 static int contains(int *tab, int val, int start, int end) {
     for (int i = start; i <= end; i++) {
-        if (tab[i] == val) return 1;
+        if (tab[i] == val)
+            return 1;
     }
     return 0;
 }
@@ -28,7 +28,7 @@ static int contains(int *tab, int val, int start, int end) {
 int* crossover(int *parent1, int *parent2, int n) {
     int *child = malloc(n * sizeof(int));
     
-    // 1. Choisir une sous-section aléatoire du Parent 1
+    // On choisit une partie aléatoire du parent 1
     int start = rand() % n;
     int end = rand() % n;
     if (start > end) {
@@ -36,58 +36,55 @@ int* crossover(int *parent1, int *parent2, int n) {
          start = end; 
          end = temp; }
 
-    // 2. Copier cette section dans l'enfant
+    // Copier cette partie dans l'enfant.
     for (int i = start; i <= end; i++) {
         child[i] = parent1[i];
     }
 
-    // 3. Remplir le reste avec les villes du Parent 2 (dans l'ordre)
+    // On remplit le reste avec les villes du deuxieme parent
     int current_p2 = 0;
     for (int i = 0; i < n; i++) {
-        // Si on est dans la zone déjà remplie par Parent 1, on saute
-        if (i >= start && i <= end) continue;
-
-        // Trouver la prochaine ville valide dans Parent 2
-        // (celle qui n'est PAS déjà dans la partie copiée de Parent 1)
+        // Saut en cas ou on se situe dans la zone remplie par le 1er parent
+        if (i >= start && i <= end)
+            continue;
+        // Trouver la prochaine ville valide dans le deuxieme
         while (contains(child, parent2[current_p2], start, end)) {
             current_p2++;
         }
-        
         child[i] = parent2[current_p2];
         current_p2++;
     }
     return child;
 }
 
-Results* geneticAlgorithm(Matrix* m) {
-    if (!m) return NULL;
+Results* geneticAlgorithm(Matrix* m, int pSize, int maxGen, double mutRate, int crossCount){
+    if (!m)
+        return NULL;
     int dim = m->dimension;
     srand(time(NULL));
-
-    // 1. Créer une population initiale
-    Results* population[POP_SIZE];
+    Results* population[pSize];
     
-    for (int i = 0; i < POP_SIZE; i++) {
+    for (int i = 0; i < pSize; i++) {
         // On utilise votre randomWalk existant pour initialiser !
         population[i] = randomWalk(m); //
     }
 
     // Boucle Principale (Générations)
-    for (int gen = 0; gen < MAX_GENERATIONS; gen++) {
+    for (int gen = 0; gen < maxGen; gen++){
         
         // Boucle de reproduction
-        for (int k = 0; k < CROSSOVER_COUNT; k++) {
+        for (int k = 0; k < crossCount; k++) {
             
             // a. Sélectionner au hasard deux individus
-            int idx1 = rand() % POP_SIZE;
-            int idx2 = rand() % POP_SIZE;
+            int idx1 = rand() % pSize;
+            int idx2 = rand() % pSize;
             
             // b. Faire un croisement pour obtenir une fille
             int* childPath = crossover(population[idx1]->bestPath, population[idx2]->bestPath, dim);
             
             // c. Avec une probabilité p, faire muter la fille
             double r = (double)rand() / RAND_MAX;
-            if (r < MUTATION_RATE) {
+            if (r < mutRate) {
                 mutate(childPath, dim);
             }
 
@@ -98,7 +95,7 @@ Results* geneticAlgorithm(Matrix* m) {
             // On cherche le pire de la population
             int worstIdx = 0;
             double maxDist = -1;
-            for(int i=0; i<POP_SIZE; i++){
+            for(int i=0; i<pSize; i++){
                 if(population[i]->bestDistance > maxDist){
                     maxDist = population[i]->bestDistance;
                     worstIdx = i;
@@ -128,7 +125,7 @@ Results* geneticAlgorithm(Matrix* m) {
     int bestIdx = 0;
     double minDist = population[0]->bestDistance; // Init avec le premier
     
-    for (int i = 1; i < POP_SIZE; i++) {
+    for (int i = 1; i < pSize; i++) {
         if (population[i]->bestDistance < minDist) {
             minDist = population[i]->bestDistance;
             bestIdx = i;
@@ -143,7 +140,7 @@ Results* geneticAlgorithm(Matrix* m) {
     memcpy(finalResult->bestPath, population[bestIdx]->bestPath, dim * sizeof(int));
 
     // Nettoyage de la population
-    for (int i = 0; i < POP_SIZE; i++) {
+    for (int i = 0; i < pSize; i++) {
         free(population[i]->bestPath);
         free(population[i]);
     }

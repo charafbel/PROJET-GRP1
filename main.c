@@ -97,9 +97,15 @@ int main(int argc, char *argv[]){
     int help_flag = 0;
     int save_flag = 0;
     int cano_flag = 0;
+    int gen_flag = 0;
     char *file_name = NULL;
     char *tsp_file = NULL;
     char *method = NULL;
+
+    int pSize = 0;
+    int maxGen = 0;
+    double mutRate = -1;
+    int crossCount = 0;
 
     static struct option long_options[] = {
         {"help", no_argument, 0, 'h'},
@@ -120,22 +126,32 @@ int main(int argc, char *argv[]){
                 tsp_file = optarg;
                 break;
             case 'm':
-    if (strcmp(optarg, "bf") == 0)
-        method = "bf";
-    else if (strcmp(optarg, "nn") == 0)
-        method = "nn";
-    else if (strcmp(optarg, "rw") == 0)
-        method = "rw";
-    else if (strcmp(optarg, "2optrw") == 0)
-        method = "2optrw";
-    else if (strcmp(optarg, "ga") == 0)
-        method = "ga";
-    else {
-        fprintf(stderr, "Error unknown method : %s\n", optarg);
-        exit(EXIT_FAILURE);
-    }
-    break;
-
+                // optarg reçoit la valeur après -m, donc ici "g" ou "bf", ...
+                if (strcmp(optarg, "bf") == 0)
+                    method = "bf";
+                else if (strcmp(optarg, "nn") == 0)
+                    method = "nn";
+                else if (strcmp(optarg, "rw") == 0)
+                    method = "rw";
+                else if (strcmp(optarg, "2optrw") == 0)
+                    method = "2optrw";
+                else if (strcmp(optarg, "ga") == 0){
+                    method = "ga"; // ou "ga"
+                    if (optind < argc)
+                        pSize = atoi(argv[optind++]);
+                    if (optind < argc)
+                        maxGen = atoi(argv[optind++]);
+                    if (optind < argc)
+                        mutRate = atof(argv[optind++]);
+                    if (optind < argc)
+                        crossCount = atoi(argv[optind++]);
+                    if (pSize == 0 || maxGen == 0 || crossCount == 0 || (1 < mutRate || mutRate < 0))
+                        gen_flag = 1;
+                } else {
+                    fprintf(stderr, "Error unknown method : %s\n", optarg);
+                    exit(EXIT_FAILURE);
+                }
+                break;
             case 'o':
                 save_flag = 1;
                 file_name = optarg;
@@ -154,8 +170,12 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "Error: missing -m <method> (e.g., bf)\n");
         exit(EXIT_FAILURE);
     }
+    if (gen_flag) {
+        printf("Usage: %s -f [file] -m ga [pSize] [maxGen] [mutRate] [crossCount]\n", argv[0]);
+        return 0;
+    }
     if (help_flag) {
-        printf("Usage: %s <tadfile> [options]\n", argv[0]);
+        printf("Usage: %s [options]\n", argv[0]);
         printf("Options:\n");
         printf("  -h, --help           Print this help message\n");
         printf("  -f [file]             TSP FILE TO READ\n");
@@ -211,7 +231,7 @@ int main(int argc, char *argv[]){
         results = twoOptrw(m, results);
     }
     else if (method && strcmp(method, "ga") == 0) {
-    results = geneticAlgorithm(m);
+    results = geneticAlgorithm(m, pSize, maxGen, mutRate, crossCount);
     }
     else {
         fprintf(stderr, "Method not implemented or specified.\n");
