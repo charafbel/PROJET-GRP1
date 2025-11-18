@@ -102,9 +102,9 @@ int main(int argc, char *argv[]){
     char *tsp_file = NULL;
     char *method = NULL;
 
-    int pSize = 0;
-    int maxGen = 0;
-    double mutRate = -1;
+    int pSize = 50;
+    int maxGen = 1000;
+    double mutRate = 0.1;
     int crossCount = 0;
 
     static struct option long_options[] = {
@@ -125,29 +125,27 @@ int main(int argc, char *argv[]){
             case 'f':
                 tsp_file = optarg;
                 break;
-            case 'm':
-                // optarg reçoit la valeur après -m, donc ici "g" ou "bf", ...
-                if (strcmp(optarg, "bf") == 0)
-                    method = "bf";
-                else if (strcmp(optarg, "nn") == 0)
-                    method = "nn";
-                else if (strcmp(optarg, "rw") == 0)
-                    method = "rw";
-                else if (strcmp(optarg, "2optrw") == 0)
-                    method = "2optrw";
-                else if (strcmp(optarg, "ga") == 0){
-                    method = "ga"; // ou "ga"
-                    if (optind < argc)
+case 'm':
+                if (strcmp(optarg, "bf") == 0) method = "bf";
+                else if (strcmp(optarg, "nn") == 0) method = "nn";
+                else if (strcmp(optarg, "rw") == 0) method = "rw";
+                else if (strcmp(optarg, "2optrw") == 0) method = "2optrw";
+                
+                else if (strcmp(optarg, "ga") == 0) {
+                    method = "ga";
+                    if (optind + 2 < argc) { 
                         pSize = atoi(argv[optind++]);
-                    if (optind < argc)
                         maxGen = atoi(argv[optind++]);
-                    if (optind < argc)
                         mutRate = atof(argv[optind++]);
-                    if (optind < argc)
-                        crossCount = atoi(argv[optind++]);
-                    if (pSize == 0 || maxGen == 0 || crossCount == 0 || (1 < mutRate || mutRate < 0))
-                        gen_flag = 1;
-                } else {
+                        
+                        crossCount = pSize / 2;
+                        if (crossCount < 1) crossCount = 1;
+                    } else {
+                        fprintf(stderr, "Erreur : -m ga attend 3 arguments : <taille_pop> <nb_gen> <taux_mut>\n");
+                        exit(EXIT_FAILURE);
+                    }
+                } 
+                else {
                     fprintf(stderr, "Error unknown method : %s\n", optarg);
                     exit(EXIT_FAILURE);
                 }
