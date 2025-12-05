@@ -125,23 +125,25 @@ int main(int argc, char *argv[]){
             case 'f':
                 tsp_file = optarg;
                 break;
-case 'm':
+            case 'm':
                 if (strcmp(optarg, "bf") == 0) method = "bf";
                 else if (strcmp(optarg, "nn") == 0) method = "nn";
                 else if (strcmp(optarg, "rw") == 0) method = "rw";
                 else if (strcmp(optarg, "2optrw") == 0) method = "2optrw";
                 
-                else if (strcmp(optarg, "ga") == 0) {
-                    method = "ga";
-                    if (optind + 2 < argc) { 
+                else if (strcmp(optarg, "ga") == 0 || strcmp(optarg, "gadpx") == 0) {
+                    // A MODIFIER.
+                    bool isDpx = (strcmp(optarg, "gadpx") == 0);
+                    method = isDpx ? "gadpx" : "ga";
+                    if (optind + 2 < argc) {
                         pSize = atoi(argv[optind++]);
                         maxGen = atoi(argv[optind++]);
                         mutRate = atof(argv[optind++]);
-                        
+
                         crossCount = pSize / 2;
                         if (crossCount < 1) crossCount = 1;
                     } else {
-                        fprintf(stderr, "Erreur : -m ga attend 3 arguments : <taille_pop> <nb_gen> <taux_mut>\n");
+                        fprintf(stderr, "Erreur : -m %s attend 3 arguments : <taille_pop> <nb_gen> <taux_mut>\n", method);
                         exit(EXIT_FAILURE);
                     }
                 } 
@@ -228,8 +230,9 @@ case 'm':
         results = randomWalk(m);
         results = twoOptrw(m, results);
     }
-    else if (method && strcmp(method, "ga") == 0) {
-    results = geneticAlgorithm(m, pSize, maxGen, mutRate, crossCount);
+    else if (method && (strcmp(method, "ga") == 0 || strcmp(method, "gadpx") == 0)) {
+        bool useDPX = (strcmp(method, "gadpx") == 0);
+        results = geneticAlgorithm(m, pSize, maxGen, mutRate, crossCount, useDPX);
     }
     else {
         fprintf(stderr, "Method not implemented or specified.\n");
