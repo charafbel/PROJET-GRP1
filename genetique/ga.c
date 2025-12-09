@@ -4,10 +4,10 @@
 #include <time.h>
 #include <stdbool.h>
 #include <float.h>
-#include "tad/city.h"
-#include "tad/matrix.h"
-#include "tad/tsp.h"
-#include "randomwalk.h"
+#include "../tad/city.h"
+#include "../tad/matrix.h"
+#include "../tad/tsp.h"
+#include "../heuristiques/randomwalk.h"
 #include "ga.h"
 
 // --- Fonctions Utilitaires ---

@@ -2,7 +2,7 @@
 #define RANDOMWALK_H
 #include <stdlib.h>
 #include <string.h>
-#include "tad/matrix.h"
+#include "../tad/matrix.h"
 
 
 

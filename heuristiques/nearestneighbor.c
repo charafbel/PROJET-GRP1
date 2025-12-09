@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <signal.h>
-#include "tad/matrix.h"
+#include "../tad/matrix.h"
 #include "nearestneighbor.h"
 #include <float.h>
 

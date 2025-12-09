@@ -75,6 +75,7 @@ def tests_instances_list(instances_file,methods):
 path = "../" # adaptez à votre cas
 code = "main" # nom du programme C
 methods = ["gadpx 10000 0.10 100"]
+# methods
 
 #test_instance(filename,methods)
 tests_instances_list("instances.txt",methods)

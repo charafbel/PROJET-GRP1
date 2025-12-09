@@ -4,16 +4,19 @@ EXEC = main
 # Dossiers
 SRC_DIR = .
 TAD_DIR = ./tad
+HEUR_DIR = ./heuristiques
+GEN_DIR = ./genetique
+BF_DIR = ./brutforce
 
 # Fichiers sources
 SRC = $(SRC_DIR)/main.c \
-      $(SRC_DIR)/nearestneighbor.c \
-      $(SRC_DIR)/randomwalk.c \
-      $(SRC_DIR)/brutforce.c \
+      $(HEUR_DIR)/nearestneighbor.c \
+      $(HEUR_DIR)/randomwalk.c \
+      $(BF_DIR)/brutforce.c \
       $(TAD_DIR)/city.c \
       $(TAD_DIR)/matrix.c \
       $(TAD_DIR)/tsp.c \
-      $(SRC_DIR)/ga.c
+      $(GEN_DIR)/ga.c
 
 # Fichiers objets (automatiquement dérivés)
 OBJ = $(SRC:.c=.o)

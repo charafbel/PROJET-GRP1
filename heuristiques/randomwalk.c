@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
-#include "tad/matrix.h"
-#include "tad/tsp.h"
+#include "../tad/matrix.h"
+#include "../tad/tsp.h"
 #include "randomwalk.h"
 #include <stdbool.h>
 #include <float.h>

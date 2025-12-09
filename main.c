@@ -11,10 +11,10 @@
 #include "tad/city.h"
 #include "tad/matrix.h"
 #include "tad/tsp.h"
-#include "nearestneighbor.h"
-#include "randomwalk.h"
-#include "brutforce.h"
-#include "ga.h"
+#include "heuristiques/nearestneighbor.h"
+#include "heuristiques/randomwalk.h"
+#include "brutforce/brutforce.h"
+#include "genetique/ga.h"
 
 char* methode;
 double temps_cpu;

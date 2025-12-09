@@ -4,8 +4,8 @@
 #include <limits.h>
 #include <signal.h>
 
-#include "tad/matrix.h"
-#include "tad/tsp.h"
+#include "../tad/matrix.h"
+#include "../tad/tsp.h"
 
 #ifndef BRUTFORCE_H
 #define BRUTFORCE_H

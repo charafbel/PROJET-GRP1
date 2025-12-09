@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <limits.h>
 
-#include "tad/matrix.h"
-#include "tad/tsp.h"
+#include "../tad/matrix.h"
+#include "../tad/tsp.h"
 
 
 void swapArrVal(int *a, int *b) {
