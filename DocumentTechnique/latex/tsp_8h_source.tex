@@ -1,0 +1,36 @@
+\doxysubsection{tsp.\+h}
+\hypertarget{tsp_8h_source}{}\label{tsp_8h_source}\index{tad/tsp.h@{tad/tsp.h}}
+\mbox{\hyperlink{tsp_8h}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TSP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TSP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{city_8h}{city.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{matrix_8h}{matrix.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*\ Structure\ servant\ au\ retour\ et\ au\ stockage\ des\ informations\ lors\ de\ la\ lecture\ */}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{int}\ dimension;}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{structCity}{City}}**\ cityArray;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{char}\ edgeType[12];\ \ \ \textcolor{comment}{//\ Type\ de\ distance\ (EUCL\_2D,\ ATT,\ GEO,\ etc.)}}
+\DoxyCodeLine{00013\ \}\ \mbox{\hyperlink{structInfos}{Infos}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*\ Fonctions\ de\ lecture\ et\ de\ traitement\ */}}
+\DoxyCodeLine{00016\ \mbox{\hyperlink{structInfos}{Infos}}*\ \mbox{\hyperlink{tsp_8h_af5d127a8e2b07b97fb1444bec32ae412}{readTsp}}(FILE\ *f);}
+\DoxyCodeLine{00017\ \mbox{\hyperlink{structMatrix}{Matrix}}*\ \mbox{\hyperlink{tsp_8h_a1df0414a0f91c4c485580cae1390083c}{distanceMatrix}}(\mbox{\hyperlink{structInfos}{Infos}}*\ infos,\ \textcolor{keywordtype}{double}\ (*\mbox{\hyperlink{tsp_8c_aea6d61f555133cc3951a95577d13d212}{fctd}})(\mbox{\hyperlink{structCity}{City}}*,\ \mbox{\hyperlink{structCity}{City}}*));}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tsp_8h_abcdd9e58b0e63d96dc042682653ab9ac}{printMatrix}}(\mbox{\hyperlink{structMatrix}{Matrix}}\ *m);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*\ Fonctions\ de\ distance\ */}}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_a3a7421eef1a36ea913a11bc1b5f71dfa}{distanceAtt}}(\mbox{\hyperlink{structCity}{City}}*\ cityA,\ \mbox{\hyperlink{structCity}{City}}*\ cityB);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_ac76f754dcef97bc9cf60310b24758226}{distanceEucl}}(\mbox{\hyperlink{structCity}{City}}*\ cityA,\ \mbox{\hyperlink{structCity}{City}}*\ cityB);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_a4587df57365b73512fef982958e85c45}{distanceGeo}}(\mbox{\hyperlink{structCity}{City}}*\ cityA,\ \mbox{\hyperlink{structCity}{City}}*\ cityB);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_a5c95392b3771fafef53e300247d9503f}{canonicalTourLength}}(\mbox{\hyperlink{structMatrix}{Matrix}}*\ m);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*\ Fonctions\ utilitaires\ pour\ le\ mode\ GEO\ */}}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_a42ac58c0b5c491bcc5be49fdc9e04c5b}{latitude}}(\mbox{\hyperlink{structCity}{City}}*\ city);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{tsp_8h_a334e86d0f6ae2b0a383933c036c9e687}{longitude}}(\mbox{\hyperlink{structCity}{City}}*\ city);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

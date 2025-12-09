@@ -39,7 +39,12 @@ static void shuffle(int *arr, int n) {
         arr[j] = tmp;
     }
 }
-
+/**
+ * @brief Resolution du TSP par l'heuristique de Random Walk.
+ * * @param m Pointeur vers la matrice des distances.
+ * @return Results* la tournée trouvé et sa distance associée.
+ * * @complexity O(N).
+ */
 Results *randomWalk(Matrix *m) {
     if (!m || m->dimension <= 0) return NULL;
 
@@ -83,6 +88,14 @@ Results *randomWalk(Matrix *m) {
     return result;
 }
 
+
+/**
+ * @brief Resolution du TSP par 2-OPT du RW.
+ * * @param mat Pointeur vers la matrice des distances.
+ * @param res Structure contenant la tournée à optimiser.
+ * @return Results* tournée optimisé avec sa distance .
+ * * @complexity O(N²).
+ */
 Results* twoOptrw(Matrix* mat, Results* res){
     if (!mat || !res) {
         perror("twoOpt mat or res null");

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Groupe 1: Référence du fichier heuristiques/randomwalk.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TSP Groupe 1<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_9239fd5d8767cddb83f912213fe4b4b5.html">heuristiques</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier randomwalk.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="matrix_8h_source.html">../tad/matrix.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tsp_8h_source.html">../tad/tsp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="randomwalk_8h_source.html">randomwalk.h</a>&quot;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a9686034507dd6af03e9efc4400f460d6" id="r_a9686034507dd6af03e9efc4400f460d6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="randomwalk_8c.html#a9686034507dd6af03e9efc4400f460d6">totalPathDistance2</a> (<a class="el" href="structMatrix.html">Matrix</a> *m, const int *chemin, int n)</td></tr>
+<tr class="separator:a9686034507dd6af03e9efc4400f460d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa84b75f3f30f15da786a32189c93e94a" id="r_aa84b75f3f30f15da786a32189c93e94a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResults.html">Results</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="randomwalk_8c.html#aa84b75f3f30f15da786a32189c93e94a">randomWalk</a> (<a class="el" href="structMatrix.html">Matrix</a> *m)</td></tr>
+<tr class="memdesc:aa84b75f3f30f15da786a32189c93e94a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolution du TSP par l'heuristique de Random Walk.  <br /></td></tr>
+<tr class="separator:aa84b75f3f30f15da786a32189c93e94a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe8c782931a71de895cc1c4d0c1de9f3" id="r_afe8c782931a71de895cc1c4d0c1de9f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResults.html">Results</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="randomwalk_8c.html#afe8c782931a71de895cc1c4d0c1de9f3">twoOptrw</a> (<a class="el" href="structMatrix.html">Matrix</a> *mat, <a class="el" href="structResults.html">Results</a> *res)</td></tr>
+<tr class="memdesc:afe8c782931a71de895cc1c4d0c1de9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolution du TSP par 2-OPT du RW.  <br /></td></tr>
+<tr class="separator:afe8c782931a71de895cc1c4d0c1de9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="aa84b75f3f30f15da786a32189c93e94a" name="aa84b75f3f30f15da786a32189c93e94a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa84b75f3f30f15da786a32189c93e94a">&#9670;&#160;</a></span>randomWalk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structResults.html">Results</a> * randomWalk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolution du TSP par l'heuristique de Random Walk. </p>
+<ul>
+<li><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Pointeur vers la matrice des distances. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Results* la tournée trouvé et sa distance associée.</dd></dl>
+</li>
+<li>@complexity O(N). </li>
+</ul>
+
+</div>
+</div>
+<a id="a9686034507dd6af03e9efc4400f460d6" name="a9686034507dd6af03e9efc4400f460d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9686034507dd6af03e9efc4400f460d6">&#9670;&#160;</a></span>totalPathDistance2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double totalPathDistance2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>chemin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe8c782931a71de895cc1c4d0c1de9f3" name="afe8c782931a71de895cc1c4d0c1de9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8c782931a71de895cc1c4d0c1de9f3">&#9670;&#160;</a></span>twoOptrw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structResults.html">Results</a> * twoOptrw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structResults.html">Results</a> *&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolution du TSP par 2-OPT du RW. </p>
+<ul>
+<li><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>Pointeur vers la matrice des distances. </td></tr>
+    <tr><td class="paramname">res</td><td>Structure contenant la tournée à optimiser. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Results* tournée optimisé avec sa distance .</dd></dl>
+</li>
+<li>@complexity O(N²). </li>
+</ul>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

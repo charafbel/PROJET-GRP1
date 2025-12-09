@@ -1,0 +1,135 @@
+\doxysubsection{Référence du fichier tad/tsp.c}
+\hypertarget{tsp_8c}{}\label{tsp_8c}\index{tad/tsp.c@{tad/tsp.c}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}city.\+h"{}}\newline
+{\ttfamily \#include "{}matrix.\+h"{}}\newline
+\doxysubsubsubsection*{Structures de données}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structInfos}{Infos}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tsp_8c_a525335710b53cb064ca56b936120431e}{\+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}}
+\item 
+\#define \mbox{\hyperlink{tsp_8c_ad6bfdff0b1311699c311726cf75092a5}{RRR}}~6378.\+388
+\item 
+\#define \mbox{\hyperlink{tsp_8c_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}}~3.\+1415926535
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef double(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{tsp_8c_aea6d61f555133cc3951a95577d13d212}{fctd}}) (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{tsp_8c_a42ac58c0b5c491bcc5be49fdc9e04c5b}{latitude}} (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}city)
+\item 
+double \mbox{\hyperlink{tsp_8c_a334e86d0f6ae2b0a383933c036c9e687}{longitude}} (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}city)
+\item 
+double \mbox{\hyperlink{tsp_8c_a4587df57365b73512fef982958e85c45}{distance\+Geo}} (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityA, \mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityB)
+\item 
+double \mbox{\hyperlink{tsp_8c_ac76f754dcef97bc9cf60310b24758226}{distance\+Eucl}} (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityA, \mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityB)
+\item 
+double \mbox{\hyperlink{tsp_8c_a3a7421eef1a36ea913a11bc1b5f71dfa}{distance\+Att}} (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityA, \mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}cityB)
+\item 
+void \mbox{\hyperlink{tsp_8c_abcdd9e58b0e63d96dc042682653ab9ac}{print\+Matrix}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\item 
+double \mbox{\hyperlink{tsp_8c_a5c95392b3771fafef53e300247d9503f}{canonical\+Tour\+Length}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\item 
+\mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{tsp_8c_af5d127a8e2b07b97fb1444bec32ae412}{read\+Tsp}} (FILE \texorpdfstring{$\ast$}{*}f)
+\item 
+\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{tsp_8c_abd48446d5e4ec4431905810115c8dc2c}{distance\+Matrix}} (\mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}infos, \mbox{\hyperlink{tsp_8c_aea6d61f555133cc3951a95577d13d212}{fctd}} \mbox{\hyperlink{tsp_8c_aea6d61f555133cc3951a95577d13d212}{fctd}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des macros}
+\Hypertarget{tsp_8c_a525335710b53cb064ca56b936120431e}\label{tsp_8c_a525335710b53cb064ca56b936120431e} 
+\index{tsp.c@{tsp.c}!\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}}
+\index{\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{\_USE\_MATH\_DEFINES}{\_USE\_MATH\_DEFINES}}
+{\footnotesize\ttfamily \#define \+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}
+
+\Hypertarget{tsp_8c_ae71449b1cc6e6250b91f539153a7a0d3}\label{tsp_8c_ae71449b1cc6e6250b91f539153a7a0d3} 
+\index{tsp.c@{tsp.c}!M\_PI@{M\_PI}}
+\index{M\_PI@{M\_PI}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{M\_PI}{M\_PI}}
+{\footnotesize\ttfamily \#define M\+\_\+\+PI~3.\+1415926535}
+
+\Hypertarget{tsp_8c_ad6bfdff0b1311699c311726cf75092a5}\label{tsp_8c_ad6bfdff0b1311699c311726cf75092a5} 
+\index{tsp.c@{tsp.c}!RRR@{RRR}}
+\index{RRR@{RRR}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{RRR}{RRR}}
+{\footnotesize\ttfamily \#define RRR~6378.\+388}
+
+
+
+\doxysubsubsection{Documentation des définitions de type}
+\Hypertarget{tsp_8c_aea6d61f555133cc3951a95577d13d212}\label{tsp_8c_aea6d61f555133cc3951a95577d13d212} 
+\index{tsp.c@{tsp.c}!fctd@{fctd}}
+\index{fctd@{fctd}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{fctd}{fctd}}
+{\footnotesize\ttfamily typedef double(\texorpdfstring{$\ast$}{*} fctd) (\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*})}
+
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{tsp_8c_a5c95392b3771fafef53e300247d9503f}\label{tsp_8c_a5c95392b3771fafef53e300247d9503f} 
+\index{tsp.c@{tsp.c}!canonicalTourLength@{canonicalTourLength}}
+\index{canonicalTourLength@{canonicalTourLength}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{canonicalTourLength()}{canonicalTourLength()}}
+{\footnotesize\ttfamily double canonical\+Tour\+Length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_a3a7421eef1a36ea913a11bc1b5f71dfa}\label{tsp_8c_a3a7421eef1a36ea913a11bc1b5f71dfa} 
+\index{tsp.c@{tsp.c}!distanceAtt@{distanceAtt}}
+\index{distanceAtt@{distanceAtt}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{distanceAtt()}{distanceAtt()}}
+{\footnotesize\ttfamily double distance\+Att (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityA,  }\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityB }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_ac76f754dcef97bc9cf60310b24758226}\label{tsp_8c_ac76f754dcef97bc9cf60310b24758226} 
+\index{tsp.c@{tsp.c}!distanceEucl@{distanceEucl}}
+\index{distanceEucl@{distanceEucl}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{distanceEucl()}{distanceEucl()}}
+{\footnotesize\ttfamily double distance\+Eucl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityA,  }\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityB }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_a4587df57365b73512fef982958e85c45}\label{tsp_8c_a4587df57365b73512fef982958e85c45} 
+\index{tsp.c@{tsp.c}!distanceGeo@{distanceGeo}}
+\index{distanceGeo@{distanceGeo}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{distanceGeo()}{distanceGeo()}}
+{\footnotesize\ttfamily double distance\+Geo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityA,  }\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{cityB }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_abd48446d5e4ec4431905810115c8dc2c}\label{tsp_8c_abd48446d5e4ec4431905810115c8dc2c} 
+\index{tsp.c@{tsp.c}!distanceMatrix@{distanceMatrix}}
+\index{distanceMatrix@{distanceMatrix}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{distanceMatrix()}{distanceMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*} distance\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}}]{infos,  }\item[{\mbox{\hyperlink{tsp_8c_aea6d61f555133cc3951a95577d13d212}{fctd}}}]{fctd }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_a42ac58c0b5c491bcc5be49fdc9e04c5b}\label{tsp_8c_a42ac58c0b5c491bcc5be49fdc9e04c5b} 
+\index{tsp.c@{tsp.c}!latitude@{latitude}}
+\index{latitude@{latitude}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{latitude()}{latitude()}}
+{\footnotesize\ttfamily double latitude (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{city }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_a334e86d0f6ae2b0a383933c036c9e687}\label{tsp_8c_a334e86d0f6ae2b0a383933c036c9e687} 
+\index{tsp.c@{tsp.c}!longitude@{longitude}}
+\index{longitude@{longitude}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{longitude()}{longitude()}}
+{\footnotesize\ttfamily double longitude (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCity}{City}} \texorpdfstring{$\ast$}{*}}]{city }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_abcdd9e58b0e63d96dc042682653ab9ac}\label{tsp_8c_abcdd9e58b0e63d96dc042682653ab9ac} 
+\index{tsp.c@{tsp.c}!printMatrix@{printMatrix}}
+\index{printMatrix@{printMatrix}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{printMatrix()}{printMatrix()}}
+{\footnotesize\ttfamily void print\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+\Hypertarget{tsp_8c_af5d127a8e2b07b97fb1444bec32ae412}\label{tsp_8c_af5d127a8e2b07b97fb1444bec32ae412} 
+\index{tsp.c@{tsp.c}!readTsp@{readTsp}}
+\index{readTsp@{readTsp}!tsp.c@{tsp.c}}
+\doxyparagraph{\texorpdfstring{readTsp()}{readTsp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*} read\+Tsp (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+

@@ -1,0 +1,92 @@
+\doxysubsection{Référence du fichier main.\+c}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include "{}tad/city.\+h"{}}\newline
+{\ttfamily \#include "{}tad/matrix.\+h"{}}\newline
+{\ttfamily \#include "{}tad/tsp.\+h"{}}\newline
+{\ttfamily \#include "{}heuristiques/nearestneighbor.\+h"{}}\newline
+{\ttfamily \#include "{}heuristiques/randomwalk.\+h"{}}\newline
+{\ttfamily \#include "{}brutforce/brutforce.\+h"{}}\newline
+{\ttfamily \#include "{}genetique/ga.\+h"{}}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a6a3869251603ae4e569abadbd7dab11c}{INThandler}} (int sig)
+\item 
+void \mbox{\hyperlink{main_8c_ae2993c3d89b56d7a7e4ac9828a0d7bd7}{print\+Output\+File}} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}results, \mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}infos, char \texorpdfstring{$\ast$}{*}fn, char \texorpdfstring{$\ast$}{*}method, double cpu\+\_\+time\+\_\+used)
+\item 
+void \mbox{\hyperlink{main_8c_a8200b055bc5ad8a520ef850899cd9da0}{print\+Output}} (\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}results, \mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}infos, char \texorpdfstring{$\ast$}{*}fn, char \texorpdfstring{$\ast$}{*}method, double cpu\+\_\+time\+\_\+used)
+\item 
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8c_a51ae21f2898f0c54abc419e798c16cd8}{methode}}
+\item 
+double \mbox{\hyperlink{main_8c_a95aa4f19ed317d76ef53b395df65109f}{temps\+\_\+cpu}}
+\item 
+double \mbox{\hyperlink{main_8c_a5daca2dc2515dc28444f01343f6b6e00}{longueur}}
+\item 
+int \mbox{\hyperlink{main_8c_a7e8264d2293ecf27b0b93f115ab70f42}{ij}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{main_8c_a6a3869251603ae4e569abadbd7dab11c}\label{main_8c_a6a3869251603ae4e569abadbd7dab11c} 
+\index{main.c@{main.c}!INThandler@{INThandler}}
+\index{INThandler@{INThandler}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{INThandler()}{INThandler()}}
+{\footnotesize\ttfamily void INThandler (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8c_a8200b055bc5ad8a520ef850899cd9da0}\label{main_8c_a8200b055bc5ad8a520ef850899cd9da0} 
+\index{main.c@{main.c}!printOutput@{printOutput}}
+\index{printOutput@{printOutput}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{printOutput()}{printOutput()}}
+{\footnotesize\ttfamily void print\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}}]{results,  }\item[{\mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}}]{infos,  }\item[{char \texorpdfstring{$\ast$}{*}}]{fn,  }\item[{char \texorpdfstring{$\ast$}{*}}]{method,  }\item[{double}]{cpu\+\_\+time\+\_\+used }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8c_ae2993c3d89b56d7a7e4ac9828a0d7bd7}\label{main_8c_ae2993c3d89b56d7a7e4ac9828a0d7bd7} 
+\index{main.c@{main.c}!printOutputFile@{printOutputFile}}
+\index{printOutputFile@{printOutputFile}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{printOutputFile()}{printOutputFile()}}
+{\footnotesize\ttfamily void print\+Output\+File (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{file\+\_\+name,  }\item[{\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}}]{results,  }\item[{\mbox{\hyperlink{structInfos}{Infos}} \texorpdfstring{$\ast$}{*}}]{infos,  }\item[{char \texorpdfstring{$\ast$}{*}}]{fn,  }\item[{char \texorpdfstring{$\ast$}{*}}]{method,  }\item[{double}]{cpu\+\_\+time\+\_\+used }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Documentation des variables}
+\Hypertarget{main_8c_a7e8264d2293ecf27b0b93f115ab70f42}\label{main_8c_a7e8264d2293ecf27b0b93f115ab70f42} 
+\index{main.c@{main.c}!ij@{ij}}
+\index{ij@{ij}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{ij}{ij}}
+{\footnotesize\ttfamily int ij}
+
+\Hypertarget{main_8c_a5daca2dc2515dc28444f01343f6b6e00}\label{main_8c_a5daca2dc2515dc28444f01343f6b6e00} 
+\index{main.c@{main.c}!longueur@{longueur}}
+\index{longueur@{longueur}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{longueur}{longueur}}
+{\footnotesize\ttfamily double longueur}
+
+\Hypertarget{main_8c_a51ae21f2898f0c54abc419e798c16cd8}\label{main_8c_a51ae21f2898f0c54abc419e798c16cd8} 
+\index{main.c@{main.c}!methode@{methode}}
+\index{methode@{methode}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{methode}{methode}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} methode}
+
+\Hypertarget{main_8c_a95aa4f19ed317d76ef53b395df65109f}\label{main_8c_a95aa4f19ed317d76ef53b395df65109f} 
+\index{main.c@{main.c}!temps\_cpu@{temps\_cpu}}
+\index{temps\_cpu@{temps\_cpu}!main.c@{main.c}}
+\doxyparagraph{\texorpdfstring{temps\_cpu}{temps\_cpu}}
+{\footnotesize\ttfamily double temps\+\_\+cpu}
+

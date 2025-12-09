@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Groupe 1: Référence du fichier main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TSP Groupe 1<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier main.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;getopt.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="city_8h_source.html">tad/city.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="matrix_8h_source.html">tad/matrix.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tsp_8h_source.html">tad/tsp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nearestneighbor_8h_source.html">heuristiques/nearestneighbor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="randomwalk_8h_source.html">heuristiques/randomwalk.h</a>&quot;</code><br />
+<code>#include &quot;brutforce/brutforce.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="ga_8h_source.html">genetique/ga.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a6a3869251603ae4e569abadbd7dab11c" id="r_a6a3869251603ae4e569abadbd7dab11c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6a3869251603ae4e569abadbd7dab11c">INThandler</a> (int sig)</td></tr>
+<tr class="separator:a6a3869251603ae4e569abadbd7dab11c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2993c3d89b56d7a7e4ac9828a0d7bd7" id="r_ae2993c3d89b56d7a7e4ac9828a0d7bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae2993c3d89b56d7a7e4ac9828a0d7bd7">printOutputFile</a> (char *file_name, <a class="el" href="structResults.html">Results</a> *results, <a class="el" href="structInfos.html">Infos</a> *infos, char *fn, char *method, double cpu_time_used)</td></tr>
+<tr class="separator:ae2993c3d89b56d7a7e4ac9828a0d7bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8200b055bc5ad8a520ef850899cd9da0" id="r_a8200b055bc5ad8a520ef850899cd9da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8200b055bc5ad8a520ef850899cd9da0">printOutput</a> (<a class="el" href="structResults.html">Results</a> *results, <a class="el" href="structInfos.html">Infos</a> *infos, char *fn, char *method, double cpu_time_used)</td></tr>
+<tr class="separator:a8200b055bc5ad8a520ef850899cd9da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a51ae21f2898f0c54abc419e798c16cd8" id="r_a51ae21f2898f0c54abc419e798c16cd8"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a51ae21f2898f0c54abc419e798c16cd8">methode</a></td></tr>
+<tr class="separator:a51ae21f2898f0c54abc419e798c16cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95aa4f19ed317d76ef53b395df65109f" id="r_a95aa4f19ed317d76ef53b395df65109f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a95aa4f19ed317d76ef53b395df65109f">temps_cpu</a></td></tr>
+<tr class="separator:a95aa4f19ed317d76ef53b395df65109f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5daca2dc2515dc28444f01343f6b6e00" id="r_a5daca2dc2515dc28444f01343f6b6e00"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5daca2dc2515dc28444f01343f6b6e00">longueur</a></td></tr>
+<tr class="separator:a5daca2dc2515dc28444f01343f6b6e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8264d2293ecf27b0b93f115ab70f42" id="r_a7e8264d2293ecf27b0b93f115ab70f42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7e8264d2293ecf27b0b93f115ab70f42">ij</a></td></tr>
+<tr class="separator:a7e8264d2293ecf27b0b93f115ab70f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a6a3869251603ae4e569abadbd7dab11c" name="a6a3869251603ae4e569abadbd7dab11c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3869251603ae4e569abadbd7dab11c">&#9670;&#160;</a></span>INThandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void INThandler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sig</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8200b055bc5ad8a520ef850899cd9da0" name="a8200b055bc5ad8a520ef850899cd9da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8200b055bc5ad8a520ef850899cd9da0">&#9670;&#160;</a></span>printOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printOutput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structResults.html">Results</a> *&#160;</td>
+          <td class="paramname"><em>results</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInfos.html">Infos</a> *&#160;</td>
+          <td class="paramname"><em>infos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>cpu_time_used</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2993c3d89b56d7a7e4ac9828a0d7bd7" name="ae2993c3d89b56d7a7e4ac9828a0d7bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2993c3d89b56d7a7e4ac9828a0d7bd7">&#9670;&#160;</a></span>printOutputFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printOutputFile </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structResults.html">Results</a> *&#160;</td>
+          <td class="paramname"><em>results</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInfos.html">Infos</a> *&#160;</td>
+          <td class="paramname"><em>infos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>cpu_time_used</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a7e8264d2293ecf27b0b93f115ab70f42" name="a7e8264d2293ecf27b0b93f115ab70f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e8264d2293ecf27b0b93f115ab70f42">&#9670;&#160;</a></span>ij</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ij</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5daca2dc2515dc28444f01343f6b6e00" name="a5daca2dc2515dc28444f01343f6b6e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5daca2dc2515dc28444f01343f6b6e00">&#9670;&#160;</a></span>longueur</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double longueur</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51ae21f2898f0c54abc419e798c16cd8" name="a51ae21f2898f0c54abc419e798c16cd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ae21f2898f0c54abc419e798c16cd8">&#9670;&#160;</a></span>methode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* methode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95aa4f19ed317d76ef53b395df65109f" name="a95aa4f19ed317d76ef53b395df65109f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95aa4f19ed317d76ef53b395df65109f">&#9670;&#160;</a></span>temps_cpu</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double temps_cpu</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

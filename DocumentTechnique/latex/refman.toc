@@ -1,0 +1,116 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Documentation des structures de données}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Référence de la structure City}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Documentation des champs}{1}{subsubsection.1.1.1}%
+\contentsline {paragraph}{id}{1}{section*.2}%
+\contentsline {paragraph}{x}{1}{section*.3}%
+\contentsline {paragraph}{y}{1}{section*.4}%
+\contentsline {subsection}{\numberline {1.2}Référence de la structure Infos}{1}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Documentation des champs}{2}{subsubsection.1.2.1}%
+\contentsline {paragraph}{cityArray}{2}{section*.6}%
+\contentsline {paragraph}{dimension}{2}{section*.7}%
+\contentsline {paragraph}{edgeType}{2}{section*.8}%
+\contentsline {subsection}{\numberline {1.3}Référence de la structure Matrix}{2}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Documentation des champs}{2}{subsubsection.1.3.1}%
+\contentsline {paragraph}{dimension}{2}{section*.10}%
+\contentsline {paragraph}{matrix}{3}{section*.11}%
+\contentsline {subsection}{\numberline {1.4}Référence de la structure Results}{3}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Documentation des champs}{3}{subsubsection.1.4.1}%
+\contentsline {paragraph}{bestDistance}{3}{section*.13}%
+\contentsline {paragraph}{bestPath}{3}{section*.14}%
+\contentsline {paragraph}{dimension}{3}{section*.15}%
+\contentsline {section}{\numberline {2}Documentation des fichiers}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Référence du fichier genetique/ga.c}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Documentation des fonctions}{4}{subsubsection.2.1.1}%
+\contentsline {paragraph}{applyTwoOpt()}{4}{section*.17}%
+\contentsline {paragraph}{crossover()}{4}{section*.18}%
+\contentsline {paragraph}{crossoverDPX()}{4}{section*.19}%
+\contentsline {paragraph}{geneticAlgorithm()}{5}{section*.20}%
+\contentsline {paragraph}{isEdgeInTour()}{5}{section*.21}%
+\contentsline {paragraph}{mutate()}{6}{section*.22}%
+\contentsline {subsection}{\numberline {2.2}Référence du fichier genetique/ga.h}{6}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Documentation des fonctions}{6}{subsubsection.2.2.1}%
+\contentsline {paragraph}{geneticAlgorithm()}{6}{section*.24}%
+\contentsline {subsection}{\numberline {2.3}ga.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Référence du fichier heuristiques/nearestneighbor.c}{7}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Documentation des fonctions}{7}{subsubsection.2.4.1}%
+\contentsline {paragraph}{nearestNeighbour()}{7}{section*.26}%
+\contentsline {subsection}{\numberline {2.5}Référence du fichier heuristiques/nearestneighbor.h}{7}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Documentation des fonctions}{8}{subsubsection.2.5.1}%
+\contentsline {paragraph}{nearestNeighbour()}{8}{section*.28}%
+\contentsline {subsection}{\numberline {2.6}nearestneighbor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{8}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Référence du fichier heuristiques/randomwalk.c}{8}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Documentation des fonctions}{9}{subsubsection.2.7.1}%
+\contentsline {paragraph}{randomWalk()}{9}{section*.30}%
+\contentsline {paragraph}{totalPathDistance2()}{9}{section*.31}%
+\contentsline {paragraph}{twoOptrw()}{9}{section*.32}%
+\contentsline {subsection}{\numberline {2.8}Référence du fichier heuristiques/randomwalk.h}{10}{subsection.2.8}%
+\contentsline {subsubsection}{\numberline {2.8.1}Documentation des fonctions}{10}{subsubsection.2.8.1}%
+\contentsline {paragraph}{randomWalk()}{10}{section*.34}%
+\contentsline {paragraph}{totalPathDistance2()}{10}{section*.35}%
+\contentsline {paragraph}{twoOptrw()}{11}{section*.36}%
+\contentsline {subsection}{\numberline {2.9}randomwalk.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{11}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Référence du fichier main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{11}{subsection.2.10}%
+\contentsline {subsubsection}{\numberline {2.10.1}Documentation des fonctions}{12}{subsubsection.2.10.1}%
+\contentsline {paragraph}{INThandler()}{12}{section*.39}%
+\contentsline {paragraph}{main()}{12}{section*.40}%
+\contentsline {paragraph}{printOutput()}{12}{section*.41}%
+\contentsline {paragraph}{printOutputFile()}{12}{section*.42}%
+\contentsline {subsubsection}{\numberline {2.10.2}Documentation des variables}{13}{subsubsection.2.10.2}%
+\contentsline {paragraph}{ij}{13}{section*.43}%
+\contentsline {paragraph}{longueur}{13}{section*.44}%
+\contentsline {paragraph}{methode}{13}{section*.45}%
+\contentsline {paragraph}{temps\_cpu}{13}{section*.46}%
+\contentsline {subsection}{\numberline {2.11}Référence du fichier tad/city.c}{13}{subsection.2.11}%
+\contentsline {subsubsection}{\numberline {2.11.1}Documentation des fonctions}{13}{subsubsection.2.11.1}%
+\contentsline {paragraph}{createCity()}{13}{section*.48}%
+\contentsline {paragraph}{freeCity()}{13}{section*.49}%
+\contentsline {subsection}{\numberline {2.12}Référence du fichier tad/city.h}{14}{subsection.2.12}%
+\contentsline {subsubsection}{\numberline {2.12.1}Documentation des fonctions}{14}{subsubsection.2.12.1}%
+\contentsline {paragraph}{createCity()}{14}{section*.52}%
+\contentsline {paragraph}{freeCity()}{14}{section*.53}%
+\contentsline {subsection}{\numberline {2.13}city.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{14}{subsection.2.13}%
+\contentsline {subsection}{\numberline {2.14}Référence du fichier tad/matrix.c}{14}{subsection.2.14}%
+\contentsline {subsubsection}{\numberline {2.14.1}Documentation des fonctions}{15}{subsubsection.2.14.1}%
+\contentsline {paragraph}{freeMatrix()}{15}{section*.55}%
+\contentsline {paragraph}{getDistance()}{15}{section*.56}%
+\contentsline {paragraph}{MatrixCreate()}{15}{section*.57}%
+\contentsline {paragraph}{setDistance()}{15}{section*.58}%
+\contentsline {subsection}{\numberline {2.15}Référence du fichier tad/matrix.h}{15}{subsection.2.15}%
+\contentsline {subsubsection}{\numberline {2.15.1}Documentation des fonctions}{16}{subsubsection.2.15.1}%
+\contentsline {paragraph}{freeMatrix()}{16}{section*.61}%
+\contentsline {paragraph}{getDistance()}{16}{section*.62}%
+\contentsline {paragraph}{MatrixCreate()}{16}{section*.63}%
+\contentsline {paragraph}{setDistance()}{16}{section*.64}%
+\contentsline {subsection}{\numberline {2.16}matrix.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{16}{subsection.2.16}%
+\contentsline {subsection}{\numberline {2.17}Référence du fichier tad/tsp.c}{17}{subsection.2.17}%
+\contentsline {subsubsection}{\numberline {2.17.1}Documentation des macros}{17}{subsubsection.2.17.1}%
+\contentsline {paragraph}{\_USE\_MATH\_DEFINES}{17}{section*.69}%
+\contentsline {paragraph}{M\_PI}{18}{section*.70}%
+\contentsline {paragraph}{RRR}{18}{section*.71}%
+\contentsline {subsubsection}{\numberline {2.17.2}Documentation des définitions de type}{18}{subsubsection.2.17.2}%
+\contentsline {paragraph}{fctd}{18}{section*.72}%
+\contentsline {subsubsection}{\numberline {2.17.3}Documentation des fonctions}{18}{subsubsection.2.17.3}%
+\contentsline {paragraph}{canonicalTourLength()}{18}{section*.73}%
+\contentsline {paragraph}{distanceAtt()}{18}{section*.74}%
+\contentsline {paragraph}{distanceEucl()}{18}{section*.75}%
+\contentsline {paragraph}{distanceGeo()}{18}{section*.76}%
+\contentsline {paragraph}{distanceMatrix()}{18}{section*.77}%
+\contentsline {paragraph}{latitude()}{19}{section*.78}%
+\contentsline {paragraph}{longitude()}{19}{section*.79}%
+\contentsline {paragraph}{printMatrix()}{19}{section*.80}%
+\contentsline {paragraph}{readTsp()}{19}{section*.81}%
+\contentsline {subsection}{\numberline {2.18}Référence du fichier tad/tsp.h}{19}{subsection.2.18}%
+\contentsline {subsubsection}{\numberline {2.18.1}Documentation des fonctions}{20}{subsubsection.2.18.1}%
+\contentsline {paragraph}{canonicalTourLength()}{20}{section*.84}%
+\contentsline {paragraph}{distanceAtt()}{20}{section*.85}%
+\contentsline {paragraph}{distanceEucl()}{20}{section*.86}%
+\contentsline {paragraph}{distanceGeo()}{20}{section*.87}%
+\contentsline {paragraph}{distanceMatrix()}{20}{section*.88}%
+\contentsline {paragraph}{latitude()}{20}{section*.89}%
+\contentsline {paragraph}{longitude()}{20}{section*.90}%
+\contentsline {paragraph}{printMatrix()}{20}{section*.91}%
+\contentsline {paragraph}{readTsp()}{21}{section*.92}%
+\contentsline {subsection}{\numberline {2.19}tsp.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{21}{subsection.2.19}%
+\contentsline {section}{Index}{23}{section*.93}%

@@ -6,6 +6,14 @@
 #include "nearestneighbor.h"
 #include <float.h>
 
+
+/**
+ * @brief Resolution du TSP par l'heuristique du Plus Proche Voisin.
+ * @param m Pointeur vers la matrice des distances.
+ * @param k Indice de la ville de départ.
+ * @return Results* Structure contenant le chemin trouvé et sa distance.
+ * * @complexity O(N²).
+ */
 Results* nearestNeighbour(Matrix* m,int k){
     int dim = m->dimension;
     bool * visited = malloc(dim * sizeof(bool));

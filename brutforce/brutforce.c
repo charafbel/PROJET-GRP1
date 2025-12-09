@@ -13,6 +13,11 @@ void swapArrVal(int *a, int *b) {
     *b = tmp;
 }
 
+/**
+ * @brief Génère la permutation suivante
+ * @param arr Le tableau représentant la tournée.
+ * @return true si une nouvelle permutation a été générée, false sinon
+*/
 bool nextPermutation(int *arr, int n){
     int i = n-2; // On part de l'avant-dernier element
     // trouver l'indice le plus haut tel que arr[i] < arr[i + 1].
@@ -37,6 +42,15 @@ bool nextPermutation(int *arr, int n){
     return true;
 }
 
+
+/**
+ * @brief Calcule la distance totale d'une tournée.
+ * * @param m Pointeur vers la matrice des distances.
+ * @param path Tableau représentant l'ordre de visite des villes.
+ * @param n Nombre de villes.
+ * @return La distance totale.
+ * * @complexity O(N)
+ */
 int totalPathDistance(Matrix *m, const int *path, int n){
     int sum = 0;
     for (int i = 0; i < n - 1; i++){
@@ -46,6 +60,13 @@ int totalPathDistance(Matrix *m, const int *path, int n){
     return sum;
 }
 
+
+/**
+ * @brief Implementation de la resolution du TSP par force brute
+ * * @param m Pointeur vers la matrice des distances.
+ * @return Results* Structure contenant le meilleur chemin et la distance de celui ci.
+ * * @complexity O(N * N!) - C'est une complexité factorielle. 
+ */
 Results* brutForce(Matrix *m){
     int dim = m->dimension;
     int *idx = malloc(dim * sizeof(int));

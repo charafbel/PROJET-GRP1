@@ -77,7 +77,13 @@ void applyTwoOpt(int *path, int n, Matrix *m) {
 
 // --- Croisements ---
 
-// Croisement standard
+/**
+ * @brief Effectue un croisement standard.
+ * * @param parent1 Tableau du premier parent.
+ * @param parent2 Tableau du second parent.
+ * @param n Dimension.
+ * @return Numero de l'enfant.
+ */
 int* crossover(int *parent1, int *parent2, int n) {
     int *child = malloc(n * sizeof(int));
 
@@ -102,6 +108,16 @@ int* crossover(int *parent1, int *parent2, int n) {
 }
 
 // Croisement DPX (Distance Preserving Crossover)
+
+/**
+ * @brief Croisement DPX.
+ * * @param parent1 Tableau du premier parent.
+ * @param parent2 Tableau du second parent.
+ * @param n Dimension.
+ * @param m Matrice des distances.
+ * @return int* Nouvelle tournée.
+ * * @complexity O(N²).
+ */
 int* crossoverDPX(int *parent1, int *parent2, int n, Matrix *m) {
     int *child = malloc(n * sizeof(int));
     bool *visited = calloc(n, sizeof(bool));
@@ -162,6 +178,16 @@ int* crossoverDPX(int *parent1, int *parent2, int n, Matrix *m) {
 
 // --- Algorithme Principal ---
 
+/**
+ * @brief Algorithme Génétique Principal.
+ * * @param m Matrice des distances.
+ * @param pSize Taille de la population.
+ * @param maxGen Nombre maximum de générations.
+ * @param mutRate Taux de mutation.
+ * @param crossCount Nombre de croisements par génération.
+ * @param useDPX Booléen pour activer le mode DPX optimisé.
+ * @return Results* La meilleure solution trouvée.
+ */
 Results* geneticAlgorithm(Matrix* m, int pSize, int maxGen, double mutRate, int crossCount, bool useDPX){
     if (!m) return NULL;
     int dim = m->dimension;

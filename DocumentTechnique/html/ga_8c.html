@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Groupe 1: Référence du fichier genetique/ga.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TSP Groupe 1<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2ec20632fbccb7f01d358f5b84e7de02.html">genetique</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier ga.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;float.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="city_8h_source.html">../tad/city.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="matrix_8h_source.html">../tad/matrix.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tsp_8h_source.html">../tad/tsp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="randomwalk_8h_source.html">../heuristiques/randomwalk.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ga_8h_source.html">ga.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a2862346fbb5159325c3c2984e09c2cf5" id="r_a2862346fbb5159325c3c2984e09c2cf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#a2862346fbb5159325c3c2984e09c2cf5">mutate</a> (int *path, int n)</td></tr>
+<tr class="separator:a2862346fbb5159325c3c2984e09c2cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b49653faad390a2d1072d972c660083" id="r_a8b49653faad390a2d1072d972c660083"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#a8b49653faad390a2d1072d972c660083">isEdgeInTour</a> (int u, int v, int *tour, int n)</td></tr>
+<tr class="separator:a8b49653faad390a2d1072d972c660083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11875d329a2d3c63a2dba83ff5f5888e" id="r_a11875d329a2d3c63a2dba83ff5f5888e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#a11875d329a2d3c63a2dba83ff5f5888e">applyTwoOpt</a> (int *path, int n, <a class="el" href="structMatrix.html">Matrix</a> *m)</td></tr>
+<tr class="separator:a11875d329a2d3c63a2dba83ff5f5888e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72f27201eb69bdd9d41ebc79b31b6f5a" id="r_a72f27201eb69bdd9d41ebc79b31b6f5a"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#a72f27201eb69bdd9d41ebc79b31b6f5a">crossover</a> (int *parent1, int *parent2, int n)</td></tr>
+<tr class="memdesc:a72f27201eb69bdd9d41ebc79b31b6f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue un croisement standard.  <br /></td></tr>
+<tr class="separator:a72f27201eb69bdd9d41ebc79b31b6f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0a28df39b96ca40a15c6dbf260278d" id="r_abc0a28df39b96ca40a15c6dbf260278d"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#abc0a28df39b96ca40a15c6dbf260278d">crossoverDPX</a> (int *parent1, int *parent2, int n, <a class="el" href="structMatrix.html">Matrix</a> *m)</td></tr>
+<tr class="memdesc:abc0a28df39b96ca40a15c6dbf260278d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Croisement DPX.  <br /></td></tr>
+<tr class="separator:abc0a28df39b96ca40a15c6dbf260278d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9761b64480630a7bff9637eb91b72d5d" id="r_a9761b64480630a7bff9637eb91b72d5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResults.html">Results</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ga_8c.html#a9761b64480630a7bff9637eb91b72d5d">geneticAlgorithm</a> (<a class="el" href="structMatrix.html">Matrix</a> *m, int pSize, int maxGen, double mutRate, int crossCount, bool useDPX)</td></tr>
+<tr class="memdesc:a9761b64480630a7bff9637eb91b72d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithme Génétique Principal.  <br /></td></tr>
+<tr class="separator:a9761b64480630a7bff9637eb91b72d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a11875d329a2d3c63a2dba83ff5f5888e" name="a11875d329a2d3c63a2dba83ff5f5888e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11875d329a2d3c63a2dba83ff5f5888e">&#9670;&#160;</a></span>applyTwoOpt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void applyTwoOpt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72f27201eb69bdd9d41ebc79b31b6f5a" name="a72f27201eb69bdd9d41ebc79b31b6f5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72f27201eb69bdd9d41ebc79b31b6f5a">&#9670;&#160;</a></span>crossover()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int * crossover </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>parent1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>parent2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Effectue un croisement standard. </p>
+<ul>
+<li><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent1</td><td>Tableau du premier parent. </td></tr>
+    <tr><td class="paramname">parent2</td><td>Tableau du second parent. </td></tr>
+    <tr><td class="paramname">n</td><td>Dimension. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Numero de l'enfant. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="abc0a28df39b96ca40a15c6dbf260278d" name="abc0a28df39b96ca40a15c6dbf260278d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0a28df39b96ca40a15c6dbf260278d">&#9670;&#160;</a></span>crossoverDPX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int * crossoverDPX </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>parent1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>parent2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Croisement DPX. </p>
+<ul>
+<li><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent1</td><td>Tableau du premier parent. </td></tr>
+    <tr><td class="paramname">parent2</td><td>Tableau du second parent. </td></tr>
+    <tr><td class="paramname">n</td><td>Dimension. </td></tr>
+    <tr><td class="paramname">m</td><td>Matrice des distances. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int* Nouvelle tournée.</dd></dl>
+</li>
+<li>@complexity O(N²). </li>
+</ul>
+
+</div>
+</div>
+<a id="a9761b64480630a7bff9637eb91b72d5d" name="a9761b64480630a7bff9637eb91b72d5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9761b64480630a7bff9637eb91b72d5d">&#9670;&#160;</a></span>geneticAlgorithm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structResults.html">Results</a> * geneticAlgorithm </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMatrix.html">Matrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxGen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mutRate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>crossCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useDPX</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Algorithme Génétique Principal. </p>
+<ul>
+<li><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Matrice des distances. </td></tr>
+    <tr><td class="paramname">pSize</td><td>Taille de la population. </td></tr>
+    <tr><td class="paramname">maxGen</td><td>Nombre maximum de générations. </td></tr>
+    <tr><td class="paramname">mutRate</td><td>Taux de mutation. </td></tr>
+    <tr><td class="paramname">crossCount</td><td>Nombre de croisements par génération. </td></tr>
+    <tr><td class="paramname">useDPX</td><td>Booléen pour activer le mode DPX optimisé. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Results* La meilleure solution trouvée. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="a8b49653faad390a2d1072d972c660083" name="a8b49653faad390a2d1072d972c660083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b49653faad390a2d1072d972c660083">&#9670;&#160;</a></span>isEdgeInTour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isEdgeInTour </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>tour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2862346fbb5159325c3c2984e09c2cf5" name="a2862346fbb5159325c3c2984e09c2cf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2862346fbb5159325c3c2984e09c2cf5">&#9670;&#160;</a></span>mutate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mutate </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

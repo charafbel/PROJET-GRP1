@@ -1,0 +1,74 @@
+\doxysubsection{Référence du fichier heuristiques/randomwalk.c}
+\hypertarget{randomwalk_8c}{}\label{randomwalk_8c}\index{heuristiques/randomwalk.c@{heuristiques/randomwalk.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include "{}../tad/matrix.\+h"{}}\newline
+{\ttfamily \#include "{}../tad/tsp.\+h"{}}\newline
+{\ttfamily \#include "{}randomwalk.\+h"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{randomwalk_8c_a9686034507dd6af03e9efc4400f460d6}{total\+Path\+Distance2}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, const int \texorpdfstring{$\ast$}{*}chemin, int n)
+\item 
+\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{randomwalk_8c_aa84b75f3f30f15da786a32189c93e94a}{random\+Walk}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\begin{DoxyCompactList}\small\item\em Resolution du TSP par l\textquotesingle{}heuristique de Random Walk. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{randomwalk_8c_afe8c782931a71de895cc1c4d0c1de9f3}{two\+Optrw}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}mat, \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}res)
+\begin{DoxyCompactList}\small\item\em Resolution du TSP par 2-\/OPT du RW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{randomwalk_8c_aa84b75f3f30f15da786a32189c93e94a}\label{randomwalk_8c_aa84b75f3f30f15da786a32189c93e94a} 
+\index{randomwalk.c@{randomwalk.c}!randomWalk@{randomWalk}}
+\index{randomWalk@{randomWalk}!randomwalk.c@{randomwalk.c}}
+\doxyparagraph{\texorpdfstring{randomWalk()}{randomWalk()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} random\+Walk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+
+
+Resolution du TSP par l\textquotesingle{}heuristique de Random Walk. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em m} & Pointeur vers la matrice des distances. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Results\texorpdfstring{$\ast$}{*} la tournée trouvé et sa distance associée.
+\end{DoxyReturn}
+
+\item @complexity O(\+N). 
+\end{DoxyItemize}\Hypertarget{randomwalk_8c_a9686034507dd6af03e9efc4400f460d6}\label{randomwalk_8c_a9686034507dd6af03e9efc4400f460d6} 
+\index{randomwalk.c@{randomwalk.c}!totalPathDistance2@{totalPathDistance2}}
+\index{totalPathDistance2@{totalPathDistance2}!randomwalk.c@{randomwalk.c}}
+\doxyparagraph{\texorpdfstring{totalPathDistance2()}{totalPathDistance2()}}
+{\footnotesize\ttfamily double total\+Path\+Distance2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{const int \texorpdfstring{$\ast$}{*}}]{chemin,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{randomwalk_8c_afe8c782931a71de895cc1c4d0c1de9f3}\label{randomwalk_8c_afe8c782931a71de895cc1c4d0c1de9f3} 
+\index{randomwalk.c@{randomwalk.c}!twoOptrw@{twoOptrw}}
+\index{twoOptrw@{twoOptrw}!randomwalk.c@{randomwalk.c}}
+\doxyparagraph{\texorpdfstring{twoOptrw()}{twoOptrw()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} two\+Optrw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{mat,  }\item[{\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*}}]{res }\end{DoxyParamCaption})}
+
+
+
+Resolution du TSP par 2-\/OPT du RW. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em mat} & Pointeur vers la matrice des distances. \\
+\hline
+{\em res} & Structure contenant la tournée à optimiser. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Results\texorpdfstring{$\ast$}{*} tournée optimisé avec sa distance .
+\end{DoxyReturn}
+
+\item @complexity O(N²). 
+\end{DoxyItemize}

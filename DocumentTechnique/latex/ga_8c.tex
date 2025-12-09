@@ -1,0 +1,133 @@
+\doxysubsection{Référence du fichier genetique/ga.c}
+\hypertarget{ga_8c}{}\label{ga_8c}\index{genetique/ga.c@{genetique/ga.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+{\ttfamily \#include "{}../tad/city.\+h"{}}\newline
+{\ttfamily \#include "{}../tad/matrix.\+h"{}}\newline
+{\ttfamily \#include "{}../tad/tsp.\+h"{}}\newline
+{\ttfamily \#include "{}../heuristiques/randomwalk.\+h"{}}\newline
+{\ttfamily \#include "{}ga.\+h"{}}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ga_8c_a2862346fbb5159325c3c2984e09c2cf5}{mutate}} (int \texorpdfstring{$\ast$}{*}path, int n)
+\item 
+bool \mbox{\hyperlink{ga_8c_a8b49653faad390a2d1072d972c660083}{is\+Edge\+In\+Tour}} (int u, int v, int \texorpdfstring{$\ast$}{*}tour, int n)
+\item 
+void \mbox{\hyperlink{ga_8c_a11875d329a2d3c63a2dba83ff5f5888e}{apply\+Two\+Opt}} (int \texorpdfstring{$\ast$}{*}path, int n, \mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ga_8c_a72f27201eb69bdd9d41ebc79b31b6f5a}{crossover}} (int \texorpdfstring{$\ast$}{*}parent1, int \texorpdfstring{$\ast$}{*}parent2, int n)
+\begin{DoxyCompactList}\small\item\em Effectue un croisement standard. \end{DoxyCompactList}\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ga_8c_abc0a28df39b96ca40a15c6dbf260278d}{crossover\+DPX}} (int \texorpdfstring{$\ast$}{*}parent1, int \texorpdfstring{$\ast$}{*}parent2, int n, \mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\begin{DoxyCompactList}\small\item\em Croisement DPX. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ga_8c_a9761b64480630a7bff9637eb91b72d5d}{genetic\+Algorithm}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, int p\+Size, int max\+Gen, double mut\+Rate, int cross\+Count, bool use\+DPX)
+\begin{DoxyCompactList}\small\item\em Algorithme Génétique Principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{ga_8c_a11875d329a2d3c63a2dba83ff5f5888e}\label{ga_8c_a11875d329a2d3c63a2dba83ff5f5888e} 
+\index{ga.c@{ga.c}!applyTwoOpt@{applyTwoOpt}}
+\index{applyTwoOpt@{applyTwoOpt}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{applyTwoOpt()}{applyTwoOpt()}}
+{\footnotesize\ttfamily void apply\+Two\+Opt (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{path,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+\Hypertarget{ga_8c_a72f27201eb69bdd9d41ebc79b31b6f5a}\label{ga_8c_a72f27201eb69bdd9d41ebc79b31b6f5a} 
+\index{ga.c@{ga.c}!crossover@{crossover}}
+\index{crossover@{crossover}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{crossover()}{crossover()}}
+{\footnotesize\ttfamily int \texorpdfstring{$\ast$}{*} crossover (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{parent1,  }\item[{int \texorpdfstring{$\ast$}{*}}]{parent2,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Effectue un croisement standard. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em parent1} & Tableau du premier parent. \\
+\hline
+{\em parent2} & Tableau du second parent. \\
+\hline
+{\em n} & Dimension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Numero de l\textquotesingle{}enfant. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{ga_8c_abc0a28df39b96ca40a15c6dbf260278d}\label{ga_8c_abc0a28df39b96ca40a15c6dbf260278d} 
+\index{ga.c@{ga.c}!crossoverDPX@{crossoverDPX}}
+\index{crossoverDPX@{crossoverDPX}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{crossoverDPX()}{crossoverDPX()}}
+{\footnotesize\ttfamily int \texorpdfstring{$\ast$}{*} crossover\+DPX (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{parent1,  }\item[{int \texorpdfstring{$\ast$}{*}}]{parent2,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+
+
+Croisement DPX. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em parent1} & Tableau du premier parent. \\
+\hline
+{\em parent2} & Tableau du second parent. \\
+\hline
+{\em n} & Dimension. \\
+\hline
+{\em m} & Matrice des distances. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int\texorpdfstring{$\ast$}{*} Nouvelle tournée.
+\end{DoxyReturn}
+
+\item @complexity O(N²). 
+\end{DoxyItemize}\Hypertarget{ga_8c_a9761b64480630a7bff9637eb91b72d5d}\label{ga_8c_a9761b64480630a7bff9637eb91b72d5d} 
+\index{ga.c@{ga.c}!geneticAlgorithm@{geneticAlgorithm}}
+\index{geneticAlgorithm@{geneticAlgorithm}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{geneticAlgorithm()}{geneticAlgorithm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} genetic\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{int}]{p\+Size,  }\item[{int}]{max\+Gen,  }\item[{double}]{mut\+Rate,  }\item[{int}]{cross\+Count,  }\item[{bool}]{use\+DPX }\end{DoxyParamCaption})}
+
+
+
+Algorithme Génétique Principal. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em m} & Matrice des distances. \\
+\hline
+{\em p\+Size} & Taille de la population. \\
+\hline
+{\em max\+Gen} & Nombre maximum de générations. \\
+\hline
+{\em mut\+Rate} & Taux de mutation. \\
+\hline
+{\em cross\+Count} & Nombre de croisements par génération. \\
+\hline
+{\em use\+DPX} & Booléen pour activer le mode DPX optimisé. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Results\texorpdfstring{$\ast$}{*} La meilleure solution trouvée. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{ga_8c_a8b49653faad390a2d1072d972c660083}\label{ga_8c_a8b49653faad390a2d1072d972c660083} 
+\index{ga.c@{ga.c}!isEdgeInTour@{isEdgeInTour}}
+\index{isEdgeInTour@{isEdgeInTour}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{isEdgeInTour()}{isEdgeInTour()}}
+{\footnotesize\ttfamily bool is\+Edge\+In\+Tour (\begin{DoxyParamCaption}\item[{int}]{u,  }\item[{int}]{v,  }\item[{int \texorpdfstring{$\ast$}{*}}]{tour,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{ga_8c_a2862346fbb5159325c3c2984e09c2cf5}\label{ga_8c_a2862346fbb5159325c3c2984e09c2cf5} 
+\index{ga.c@{ga.c}!mutate@{mutate}}
+\index{mutate@{mutate}!ga.c@{ga.c}}
+\doxyparagraph{\texorpdfstring{mutate()}{mutate()}}
+{\footnotesize\ttfamily void mutate (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{path,  }\item[{int}]{n }\end{DoxyParamCaption})}
+

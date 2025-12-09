@@ -1,0 +1,29 @@
+\doxysubsection{matrix.\+h}
+\hypertarget{matrix_8h_source}{}\label{matrix_8h_source}\index{tad/matrix.h@{tad/matrix.h}}
+\mbox{\hyperlink{matrix_8h}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MATRIX\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MATRIX\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{city_8h}{city.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structMatrix_aef975e07951ac2900a2bf6cdff00d8ac}{dimension}};}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{double}\ **\mbox{\hyperlink{structMatrix_a4b26a049df7108da3a46d4457afc3735}{matrix}};}
+\DoxyCodeLine{00009\ \}\ \mbox{\hyperlink{structMatrix}{Matrix}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structResults_a05c11a53433f3c8cda056d1285e6ef01}{dimension}};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structResults_a6b84c8ebc792c99bbfd14c2e80090dac}{bestDistance}};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{structResults_a8ce01ce0b498cb69b65238e270f20808}{bestPath}};}
+\DoxyCodeLine{00015\ \}\ \mbox{\hyperlink{structResults}{Results}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \mbox{\hyperlink{structMatrix}{Matrix}}*\ \mbox{\hyperlink{matrix_8h_a7e4aa5fd4c970f4b62bc3db6f7e4c527}{MatrixCreate}}(\textcolor{keywordtype}{int}\ dimension);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{matrix_8h_a1a9d24137649baa0543b9807ce68fed0}{freeMatrix}}(\mbox{\hyperlink{structMatrix}{Matrix}}*\ m);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{matrix_8h_a97db8c7d2861e281f9fe572307705db4}{setDistance}}(\mbox{\hyperlink{structMatrix}{Matrix}}*\ m,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ distance);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{matrix_8h_af402f2ea050035e73640037c7cc1a750}{getDistance}}(\mbox{\hyperlink{structMatrix}{Matrix}}*\ m,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MATRIX\_H}}
+
+\end{DoxyCode}

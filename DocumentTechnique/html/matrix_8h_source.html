@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Groupe 1:  Fichier source de tad/matrix.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TSP Groupe 1<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8127ef463eea48f64a36d8d71269a93e.html">tad</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">matrix.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="matrix_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MATRIX_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MATRIX_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="city_8h.html">city.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structMatrix.html">    6</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="structMatrix.html#aef975e07951ac2900a2bf6cdff00d8ac">    7</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structMatrix.html#aef975e07951ac2900a2bf6cdff00d8ac">dimension</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structMatrix.html#a4b26a049df7108da3a46d4457afc3735">    8</a></span>    <span class="keywordtype">double</span> **<a class="code hl_variable" href="structMatrix.html#a4b26a049df7108da3a46d4457afc3735">matrix</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>} <a class="code hl_struct" href="structMatrix.html">Matrix</a>;</div>
+</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structResults.html">   11</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structResults.html#a05c11a53433f3c8cda056d1285e6ef01">   12</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structResults.html#a05c11a53433f3c8cda056d1285e6ef01">dimension</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structResults.html#a6b84c8ebc792c99bbfd14c2e80090dac">   13</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structResults.html#a6b84c8ebc792c99bbfd14c2e80090dac">bestDistance</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structResults.html#a8ce01ce0b498cb69b65238e270f20808">   14</a></span>    <span class="keywordtype">int</span> *<a class="code hl_variable" href="structResults.html#a8ce01ce0b498cb69b65238e270f20808">bestPath</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>} <a class="code hl_struct" href="structResults.html">Results</a>;</div>
+</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><a class="code hl_struct" href="structMatrix.html">Matrix</a>* <a class="code hl_function" href="matrix_8h.html#a7e4aa5fd4c970f4b62bc3db6f7e4c527">MatrixCreate</a>(<span class="keywordtype">int</span> dimension);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">void</span> <a class="code hl_function" href="matrix_8h.html#a1a9d24137649baa0543b9807ce68fed0">freeMatrix</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a>* m);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> <a class="code hl_function" href="matrix_8h.html#a97db8c7d2861e281f9fe572307705db4">setDistance</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a>* m, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">double</span> distance);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">double</span> <a class="code hl_function" href="matrix_8h.html#af402f2ea050035e73640037c7cc1a750">getDistance</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a>* m, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif </span><span class="comment">//MATRIX_H</span></div>
+<div class="ttc" id="acity_8h_html"><div class="ttname"><a href="city_8h.html">city.h</a></div></div>
+<div class="ttc" id="amatrix_8h_html_a1a9d24137649baa0543b9807ce68fed0"><div class="ttname"><a href="matrix_8h.html#a1a9d24137649baa0543b9807ce68fed0">freeMatrix</a></div><div class="ttdeci">void freeMatrix(Matrix *m)</div><div class="ttdef"><b>Definition</b> matrix.c:48</div></div>
+<div class="ttc" id="amatrix_8h_html_a7e4aa5fd4c970f4b62bc3db6f7e4c527"><div class="ttname"><a href="matrix_8h.html#a7e4aa5fd4c970f4b62bc3db6f7e4c527">MatrixCreate</a></div><div class="ttdeci">Matrix * MatrixCreate(int dimension)</div><div class="ttdef"><b>Definition</b> matrix.c:8</div></div>
+<div class="ttc" id="amatrix_8h_html_a97db8c7d2861e281f9fe572307705db4"><div class="ttname"><a href="matrix_8h.html#a97db8c7d2861e281f9fe572307705db4">setDistance</a></div><div class="ttdeci">void setDistance(Matrix *m, int i, int j, double distance)</div><div class="ttdef"><b>Definition</b> matrix.c:59</div></div>
+<div class="ttc" id="amatrix_8h_html_af402f2ea050035e73640037c7cc1a750"><div class="ttname"><a href="matrix_8h.html#af402f2ea050035e73640037c7cc1a750">getDistance</a></div><div class="ttdeci">double getDistance(Matrix *m, int i, int j)</div><div class="ttdef"><b>Definition</b> matrix.c:77</div></div>
+<div class="ttc" id="astructMatrix_html"><div class="ttname"><a href="structMatrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> matrix.h:6</div></div>
+<div class="ttc" id="astructMatrix_html_a4b26a049df7108da3a46d4457afc3735"><div class="ttname"><a href="structMatrix.html#a4b26a049df7108da3a46d4457afc3735">Matrix::matrix</a></div><div class="ttdeci">double ** matrix</div><div class="ttdef"><b>Definition</b> matrix.h:8</div></div>
+<div class="ttc" id="astructMatrix_html_aef975e07951ac2900a2bf6cdff00d8ac"><div class="ttname"><a href="structMatrix.html#aef975e07951ac2900a2bf6cdff00d8ac">Matrix::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> matrix.h:7</div></div>
+<div class="ttc" id="astructResults_html"><div class="ttname"><a href="structResults.html">Results</a></div><div class="ttdef"><b>Definition</b> matrix.h:11</div></div>
+<div class="ttc" id="astructResults_html_a05c11a53433f3c8cda056d1285e6ef01"><div class="ttname"><a href="structResults.html#a05c11a53433f3c8cda056d1285e6ef01">Results::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> matrix.h:12</div></div>
+<div class="ttc" id="astructResults_html_a6b84c8ebc792c99bbfd14c2e80090dac"><div class="ttname"><a href="structResults.html#a6b84c8ebc792c99bbfd14c2e80090dac">Results::bestDistance</a></div><div class="ttdeci">double bestDistance</div><div class="ttdef"><b>Definition</b> matrix.h:13</div></div>
+<div class="ttc" id="astructResults_html_a8ce01ce0b498cb69b65238e270f20808"><div class="ttname"><a href="structResults.html#a8ce01ce0b498cb69b65238e270f20808">Results::bestPath</a></div><div class="ttdeci">int * bestPath</div><div class="ttdef"><b>Definition</b> matrix.h:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

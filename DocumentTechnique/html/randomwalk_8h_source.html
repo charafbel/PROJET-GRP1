@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TSP Groupe 1:  Fichier source de heuristiques/randomwalk.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">TSP Groupe 1<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_9239fd5d8767cddb83f912213fe4b4b5.html">heuristiques</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">randomwalk.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="randomwalk_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef RANDOMWALK_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define RANDOMWALK_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;../tad/matrix.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">/* Renvoie une tournée aléatoire et on calcule longueur en utilisant la matrice */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><a class="code hl_struct" href="structResults.html">Results</a>* <a class="code hl_function" href="randomwalk_8h.html#aa84b75f3f30f15da786a32189c93e94a">randomWalk</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a>* m);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_struct" href="structResults.html">Results</a>* <a class="code hl_function" href="randomwalk_8h.html#afe8c782931a71de895cc1c4d0c1de9f3">twoOptrw</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a>* mat, <a class="code hl_struct" href="structResults.html">Results</a>* res);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">double</span> <a class="code hl_function" href="randomwalk_8h.html#a9686034507dd6af03e9efc4400f460d6">totalPathDistance2</a>(<a class="code hl_struct" href="structMatrix.html">Matrix</a> *m, <span class="keyword">const</span> <span class="keywordtype">int</span> *chemin, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="arandomwalk_8h_html_a9686034507dd6af03e9efc4400f460d6"><div class="ttname"><a href="randomwalk_8h.html#a9686034507dd6af03e9efc4400f460d6">totalPathDistance2</a></div><div class="ttdeci">double totalPathDistance2(Matrix *m, const int *chemin, int n)</div><div class="ttdef"><b>Definition</b> randomwalk.c:25</div></div>
+<div class="ttc" id="arandomwalk_8h_html_aa84b75f3f30f15da786a32189c93e94a"><div class="ttname"><a href="randomwalk_8h.html#aa84b75f3f30f15da786a32189c93e94a">randomWalk</a></div><div class="ttdeci">Results * randomWalk(Matrix *m)</div><div class="ttdoc">Resolution du TSP par l'heuristique de Random Walk.</div><div class="ttdef"><b>Definition</b> randomwalk.c:48</div></div>
+<div class="ttc" id="arandomwalk_8h_html_afe8c782931a71de895cc1c4d0c1de9f3"><div class="ttname"><a href="randomwalk_8h.html#afe8c782931a71de895cc1c4d0c1de9f3">twoOptrw</a></div><div class="ttdeci">Results * twoOptrw(Matrix *mat, Results *res)</div><div class="ttdoc">Resolution du TSP par 2-OPT du RW.</div><div class="ttdef"><b>Definition</b> randomwalk.c:99</div></div>
+<div class="ttc" id="astructMatrix_html"><div class="ttname"><a href="structMatrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> matrix.h:6</div></div>
+<div class="ttc" id="astructResults_html"><div class="ttname"><a href="structResults.html">Results</a></div><div class="ttdef"><b>Definition</b> matrix.h:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

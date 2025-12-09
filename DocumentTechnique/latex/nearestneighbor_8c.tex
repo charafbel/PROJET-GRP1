@@ -1,0 +1,40 @@
+\doxysubsection{Référence du fichier heuristiques/nearestneighbor.c}
+\hypertarget{nearestneighbor_8c}{}\label{nearestneighbor_8c}\index{heuristiques/nearestneighbor.c@{heuristiques/nearestneighbor.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include "{}../tad/matrix.\+h"{}}\newline
+{\ttfamily \#include "{}nearestneighbor.\+h"{}}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{nearestneighbor_8c_a64cc2d4722a788ae8036013f31773577}{nearest\+Neighbour}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, int k)
+\begin{DoxyCompactList}\small\item\em Resolution du TSP par l\textquotesingle{}heuristique du Plus Proche Voisin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{nearestneighbor_8c_a64cc2d4722a788ae8036013f31773577}\label{nearestneighbor_8c_a64cc2d4722a788ae8036013f31773577} 
+\index{nearestneighbor.c@{nearestneighbor.c}!nearestNeighbour@{nearestNeighbour}}
+\index{nearestNeighbour@{nearestNeighbour}!nearestneighbor.c@{nearestneighbor.c}}
+\doxyparagraph{\texorpdfstring{nearestNeighbour()}{nearestNeighbour()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} nearest\+Neighbour (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Resolution du TSP par l\textquotesingle{}heuristique du Plus Proche Voisin. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em m} & Pointeur vers la matrice des distances. \\
+\hline
+{\em k} & Indice de la ville de départ. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Results\texorpdfstring{$\ast$}{*} Structure contenant le chemin trouvé et sa distance.
+\begin{DoxyItemize}
+\item @complexity O(N²). 
+\end{DoxyItemize}
+\end{DoxyReturn}

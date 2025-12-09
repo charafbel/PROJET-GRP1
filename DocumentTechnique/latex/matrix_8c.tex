@@ -1,0 +1,45 @@
+\doxysubsection{Référence du fichier tad/matrix.c}
+\hypertarget{matrix_8c}{}\label{matrix_8c}\index{tad/matrix.c@{tad/matrix.c}}
+{\ttfamily \#include "{}matrix.\+h"{}}\newline
+{\ttfamily \#include "{}city.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{matrix_8c_a7e4aa5fd4c970f4b62bc3db6f7e4c527}{Matrix\+Create}} (int dimension)
+\item 
+void \mbox{\hyperlink{matrix_8c_a1a9d24137649baa0543b9807ce68fed0}{free\+Matrix}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m)
+\item 
+void \mbox{\hyperlink{matrix_8c_a97db8c7d2861e281f9fe572307705db4}{set\+Distance}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, int i, int j, double distance)
+\item 
+double \mbox{\hyperlink{matrix_8c_af402f2ea050035e73640037c7cc1a750}{get\+Distance}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, int i, int j)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{matrix_8c_a1a9d24137649baa0543b9807ce68fed0}\label{matrix_8c_a1a9d24137649baa0543b9807ce68fed0} 
+\index{matrix.c@{matrix.c}!freeMatrix@{freeMatrix}}
+\index{freeMatrix@{freeMatrix}!matrix.c@{matrix.c}}
+\doxyparagraph{\texorpdfstring{freeMatrix()}{freeMatrix()}}
+{\footnotesize\ttfamily void free\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m }\end{DoxyParamCaption})}
+
+\Hypertarget{matrix_8c_af402f2ea050035e73640037c7cc1a750}\label{matrix_8c_af402f2ea050035e73640037c7cc1a750} 
+\index{matrix.c@{matrix.c}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!matrix.c@{matrix.c}}
+\doxyparagraph{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily double get\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+\Hypertarget{matrix_8c_a7e4aa5fd4c970f4b62bc3db6f7e4c527}\label{matrix_8c_a7e4aa5fd4c970f4b62bc3db6f7e4c527} 
+\index{matrix.c@{matrix.c}!MatrixCreate@{MatrixCreate}}
+\index{MatrixCreate@{MatrixCreate}!matrix.c@{matrix.c}}
+\doxyparagraph{\texorpdfstring{MatrixCreate()}{MatrixCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*} Matrix\+Create (\begin{DoxyParamCaption}\item[{int}]{dimension }\end{DoxyParamCaption})}
+
+\Hypertarget{matrix_8c_a97db8c7d2861e281f9fe572307705db4}\label{matrix_8c_a97db8c7d2861e281f9fe572307705db4} 
+\index{matrix.c@{matrix.c}!setDistance@{setDistance}}
+\index{setDistance@{setDistance}!matrix.c@{matrix.c}}
+\doxyparagraph{\texorpdfstring{setDistance()}{setDistance()}}
+{\footnotesize\ttfamily void set\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{int}]{i,  }\item[{int}]{j,  }\item[{double}]{distance }\end{DoxyParamCaption})}
+

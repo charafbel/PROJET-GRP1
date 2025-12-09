@@ -1,0 +1,44 @@
+\doxysubsection{Référence du fichier genetique/ga.h}
+\hypertarget{ga_8h}{}\label{ga_8h}\index{genetique/ga.h@{genetique/ga.h}}
+{\ttfamily \#include "{}../tad/matrix.\+h"{}}\newline
+{\ttfamily \#include "{}../tad/tsp.\+h"{}}\newline
+\doxysubsubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ga_8h_a9761b64480630a7bff9637eb91b72d5d}{genetic\+Algorithm}} (\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}m, int p\+Size, int max\+Gen, double mut\+Rate, int cross\+Count, bool use\+DPX)
+\begin{DoxyCompactList}\small\item\em Algorithme Génétique Principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Documentation des fonctions}
+\Hypertarget{ga_8h_a9761b64480630a7bff9637eb91b72d5d}\label{ga_8h_a9761b64480630a7bff9637eb91b72d5d} 
+\index{ga.h@{ga.h}!geneticAlgorithm@{geneticAlgorithm}}
+\index{geneticAlgorithm@{geneticAlgorithm}!ga.h@{ga.h}}
+\doxyparagraph{\texorpdfstring{geneticAlgorithm()}{geneticAlgorithm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structResults}{Results}} \texorpdfstring{$\ast$}{*} genetic\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMatrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{m,  }\item[{int}]{p\+Size,  }\item[{int}]{max\+Gen,  }\item[{double}]{mut\+Rate,  }\item[{int}]{cross\+Count,  }\item[{bool}]{use\+DPX }\end{DoxyParamCaption})}
+
+
+
+Algorithme Génétique Principal. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Paramètres}
+{\em m} & Matrice des distances. \\
+\hline
+{\em p\+Size} & Taille de la population. \\
+\hline
+{\em max\+Gen} & Nombre maximum de générations. \\
+\hline
+{\em mut\+Rate} & Taux de mutation. \\
+\hline
+{\em cross\+Count} & Nombre de croisements par génération. \\
+\hline
+{\em use\+DPX} & Booléen pour activer le mode DPX optimisé. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Results\texorpdfstring{$\ast$}{*} La meilleure solution trouvée. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
