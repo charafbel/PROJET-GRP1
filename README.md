@@ -57,7 +57,12 @@ Structure du Projet :
   différentes méthodes et de rediriger les sorties vers les fichiers du répertoire TESTS.
   • Le fichier main permet d'exécuter le programme en faisant appel aux différentes
   méthodes.
-  
+
+
+
+
+
+
 Analyse des performances de notre projet :
 Pour avoir une vision d'ensemble, nous avons effectué des tests sur différentes tailles
 d’instances et sur différents types de distances. Paramètres utilisés pour les tests comparatifs
@@ -91,7 +96,9 @@ cette échelle est le Génétique Simple.
   augmenterait son temps de calcul.
   • Variante DPX : C'est la méthode qui s'approche le plus de la solution optimale, mais
   elle nécessite une grande puissance de calcul.
-  o Note sur les paramètres : Les meilleurs résultats pour le DPX ont été obtenus
+
+
+Note sur les paramètres : Les meilleurs résultats pour le DPX ont été obtenus
   avec les paramètres 300 individus / 2000 générations. Avec cette
   configuration, l'algorithme atteint d'excellents scores mais nécessite un temps
   d'exécution long (environ 10 minutes pour l'instance att532.tsp).
