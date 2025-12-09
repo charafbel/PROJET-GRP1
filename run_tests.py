@@ -9,8 +9,8 @@ OUTPUT_DIR = "tests"
 
 METHODS = [
     "nn", "rw",
-    "gadpx 10000 0.10 100",
-    "ga 5000 0.20 50"
+    "gadpx 300 0.10 100",
+    "ga 300 0.10 100"
 ]
 
 VALID_EXTENSIONS = (".tsp")
